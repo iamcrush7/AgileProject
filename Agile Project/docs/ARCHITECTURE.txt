@@ -1,0 +1,383 @@
+# NE Connect Login System - Architecture Diagram
+
+## User Registration Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    REGISTRATION FLOW                         │
+└─────────────────────────────────────────────────────────────┘
+
+    [Register Form]
+          ↓
+  (Fill name, email, password)
+          ↓
+    [register.php]
+          ↓
+  (Submit AJAX)
+          ↓
+  [register_handler.php]
+          ↓
+  ┌─────────────────────────┐
+  │ Validate Input          │
+  │ - Check required fields │
+  │ - Check email format    │
+  │ - Check password match  │
+  └─────────────────────────┘
+          ↓
+  ┌─────────────────────────┐
+  │ Check Duplicates        │
+  │ - Email already exists? │
+  └─────────────────────────┘
+          ↓
+  ┌─────────────────────────┐
+  │ Hash Password           │
+  │ password_hash()         │
+  └─────────────────────────┘
+          ↓
+  ┌─────────────────────────┐
+  │ Save to Database        │
+  │ INSERT INTO users       │
+  └─────────────────────────┘
+          ↓
+  [Return JSON Response]
+          ↓
+  ┌──────────────────┐
+  │ Success Message  │
+  │ Redirect to Login│
+  └──────────────────┘
+```
+
+---
+
+## User Login Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      LOGIN FLOW                              │
+└─────────────────────────────────────────────────────────────┘
+
+    [Login Form]
+          ↓
+  (Enter email & password)
+          ↓
+    [login.php]
+          ↓
+  (Submit AJAX)
+          ↓
+  [login_handler.php]
+          ↓
+  ┌─────────────────────────┐
+  │ Check for Admin         │
+  │ hardcoded credentials   │
+  └─────────────────────────┘
+          ↓ (if not admin)
+  ┌─────────────────────────┐
+  │ Query Database          │
+  │ SELECT FROM users       │
+  │ WHERE email = ?         │
+  └─────────────────────────┘
+          ↓
+  ┌─────────────────────────┐
+  │ Verify Password         │
+  │ password_verify()       │
+  └─────────────────────────┘
+          ↓
+  ┌──────────────────────┐
+  │ Create Session       │
+  │ $_SESSION['user_id'] │
+  │ $_SESSION['email']   │
+  │ $_SESSION['name']    │
+  │ $_SESSION['type']    │
+  └──────────────────────┘
+          ↓
+  [Return JSON Response]
+          ↓
+  ┌──────────────────────────┐
+  │ Success Message          │
+  │ Redirect to Dashboard    │
+  │ (admin/provider/customer)│
+  └──────────────────────────┘
+```
+
+---
+
+## Session Management
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                   SESSION FLOW                               │
+└──────────────────────────────────────────────────────────────┘
+
+[Any Protected Page]
+        ↓
+include 'session.php'
+        ↓
+requireLogin()
+        ↓
+┌─────────────────────────┐
+│ Check Session Exists    │
+│ isset($_SESSION['id'])  │
+└─────────────────────────┘
+        ↓
+   ┌─────────┬──────────┐
+   │ YES     │ NO       │
+   ↓         ↓
+ [Load]   [Redirect to
+  Page]    Login Page]
+```
+
+---
+
+## Database Schema
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                    DATABASE TABLES                          │
+└────────────────────────────────────────────────────────────┘
+
+users
+├── id (PK)
+├── name
+├── email (UNIQUE)
+├── password (HASHED)
+├── user_type (customer/provider/admin)
+├── phone
+├── address
+├── created_at
+└── updated_at
+     ↑
+     │ (One-to-Many)
+     │
+     ├─→ provider_services
+     │   ├── id (PK)
+     │   ├── provider_id (FK)
+     │   ├── service_id (FK)
+     │   ├── price
+     │   └── rating
+     │
+     └─→ bookings
+         ├── id (PK)
+         ├── customer_id (FK)
+         ├── provider_id (FK)
+         ├── service_id (FK)
+         ├── status
+         └── created_at
+              ↓
+         reviews
+         ├── id (PK)
+         ├── booking_id (FK)
+         ├── rating
+         └── comment
+
+services
+├── id (PK)
+├── name
+├── description
+├── category
+└── icon
+```
+
+---
+
+## File Structure & Relationships
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                   PROJECT STRUCTURE                         │
+└────────────────────────────────────────────────────────────┘
+
+[Page Files]
+├── admin.php ──→ requires 'session.php' ──→ requireUserType('admin')
+├── index.php ──→ includes 'config.php'
+├── login.php ──→ includes 'config.php' ──→ calls login_handler.php
+├── register.php ──→ includes 'config.php' ──→ calls register_handler.php
+├── services.php ──→ includes 'config.php'
+└── provider-dashboard.php ──→ requires 'session.php'
+
+[Handler Files]
+├── login_handler.php ──→ includes 'config.php'
+├── register_handler.php ──→ includes 'config.php'
+└── logout.php ──→ destroys session
+
+[Core Files]
+├── config.php ──→ mysqli connection to agile database
+└── session.php ──→ session functions
+
+[Frontend]
+├── js/script.js ──→ AJAX for forms
+└── css/style.css ──→ styling
+
+[Data Files]
+└── database_schema.sql ──→ create all tables
+```
+
+---
+
+## Request/Response Flow
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                   AJAX REQUEST FLOW                          │
+└──────────────────────────────────────────────────────────────┘
+
+[Browser]
+    │
+    ├─ User submits form
+    │
+    └─→ JavaScript intercepts (e.preventDefault())
+         │
+         ├─ Create FormData
+         │
+         └─→ fetch('handler.php', {
+                    method: 'POST',
+                    body: formData
+                })
+             │
+             └─→ [Server]
+                 │
+                 ├─ Handler processes data
+                 │
+                 └─→ echo json_encode({
+                         'success': true/false,
+                         'message': 'text',
+                         'redirect': 'page.php'
+                     })
+                 │
+                 └─→ [Browser]
+                     │
+                     ├─ Parse JSON
+                     │
+                     ├─ Show message
+                     │
+                     └─→ Redirect if success
+                         │
+                         └─→ [New Page]
+```
+
+---
+
+## Security Layers
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                   SECURITY IMPLEMENTED                      │
+└────────────────────────────────────────────────────────────┘
+
+Layer 1: Client-Side Validation
+├─ HTML5 required attribute
+├─ Email format check
+├─ Password length check
+└─ Confirm password match
+
+Layer 2: Server-Side Validation
+├─ Check all fields provided
+├─ Validate email format
+├─ Check password length
+├─ Verify password match
+└─ Check duplicate email
+
+Layer 3: Database Security
+├─ Prepared Statements (prevent SQL injection)
+├─ Parameterized queries
+├─ Use bind_param()
+└─ Never concatenate user input
+
+Layer 4: Password Security
+├─ Hash with password_hash()
+├─ Verify with password_verify()
+├─ Never store plain text
+└─ Use PASSWORD_DEFAULT algorithm
+
+Layer 5: Session Security
+├─ Session-based authentication
+├─ User ID stored in session
+├─ Protected pages check session
+└─ Admin pages check user type
+
+Layer 6: Error Handling
+├─ Don't expose database errors to users
+├─ Log errors server-side
+├─ Show generic messages to users
+└─ Return JSON for AJAX
+```
+
+---
+
+## User Journey
+
+```
+┌──────────────────────────────────────────────────────────┐
+│            TYPICAL USER JOURNEYS                          │
+└──────────────────────────────────────────────────────────┘
+
+NEW USER:
+[Landing Page] 
+    → [Register] 
+    → [Enter Details] 
+    → [DB: Save User] 
+    → [Login Page] 
+    → [Login] 
+    → [DB: Verify] 
+    → [Home Page] 
+    → [Browse Services]
+
+EXISTING USER:
+[Landing Page] 
+    → [Login] 
+    → [Enter Credentials] 
+    → [DB: Verify] 
+    → [Home Page]
+
+PROVIDER:
+[Register as Provider] 
+    → [Provider Dashboard] 
+    → [Add Services] 
+    → [View Bookings] 
+    → [Complete Service]
+
+ADMIN:
+[Admin Login] 
+    → [Admin Dashboard] 
+    → [Manage Users] 
+    → [Manage Services] 
+    → [View All Bookings]
+```
+
+---
+
+## Database Connection
+
+```
+┌────────────────────────────────────────────────────────┐
+│              CONNECTION ARCHITECTURE                     │
+└────────────────────────────────────────────────────────┘
+
+[config.php]
+    │
+    ├─ Server: localhost
+    ├─ Username: root
+    ├─ Password: (empty)
+    └─ Database: agile
+         │
+         └─ mysqli_connect()
+             │
+             └─ $conn object
+                 │
+                 ├─ Used by login_handler.php
+                 ├─ Used by register_handler.php
+                 ├─ Used by all pages
+                 └─ prepare() & execute()
+                     │
+                     └─ Bind parameters
+                         │
+                         └─ Execute safely
+```
+
+---
+
+This architecture ensures:
+✅ Security (Prepared statements, password hashing)
+✅ Scalability (Proper database schema)
+✅ Maintainability (Clean separation of concerns)
+✅ User Experience (AJAX, clear messages)
+✅ Performance (Indexed columns, efficient queries)

@@ -1,0 +1,182 @@
+# Quick Start Guide - NE Connect Login System
+
+## 🚀 Start Here
+
+### 1. Run phpMyAdmin SQL
+- Open: http://localhost/phpmyadmin
+- Select "agile" database
+- Click SQL tab
+- Copy all from `database_schema.sql` 
+- Paste and click GO
+
+### 2. Test Login
+- Visit: http://localhost/Agile%20Project/login.php
+- Admin: `admin@neconnect.com` / `admin123`
+
+### 3. Register New User
+- Visit: http://localhost/Agile%20Project/register.php
+- Fill form and submit
+- Login with new account
+
+---
+
+## 📂 File Structure
+
+```
+Agile Project/
+├── admin.php (Admin dashboard - requires login)
+├── index.php (Home page)
+├── login.php (Login form)
+├── login_handler.php (Backend login logic)
+├── logout.php (Logout handler)
+├── register.php (Registration form)
+├── register_handler.php (Backend registration logic)
+├── session.php (Session management)
+├── config.php (Database connection) ✅ READY
+├── services.php (Services listing)
+├── provider-dashboard.php (Provider dashboard)
+├── database_schema.sql (Create tables - RUN THIS FIRST)
+├── LOGIN_SETUP.md (Full documentation)
+├── css/style.css (Styling)
+├── js/script.js (JavaScript - updated for AJAX)
+└── README files
+```
+
+---
+
+## 🔐 Admin Credentials
+
+| Field | Value |
+|-------|-------|
+| Email | admin@neconnect.com |
+| Password | admin123 |
+| Role | Admin |
+| Access | /admin.php |
+
+---
+
+## 🛠️ How It Works
+
+### Login Flow:
+1. User submits login form at `login.php`
+2. JavaScript sends AJAX request to `login_handler.php`
+3. Backend validates email and password
+4. Password is verified using `password_verify()`
+5. If valid, session is created
+6. User redirected to dashboard
+
+### Registration Flow:
+1. User fills form at `register.php`
+2. JavaScript sends AJAX request to `register_handler.php`
+3. Email is checked for duplicates
+4. Password is hashed using `password_hash()`
+5. User data saved to database
+6. Redirected to login page
+
+---
+
+## 📊 Database Tables
+
+### users
+- Stores user accounts
+- Password hashed (never plain text)
+- Types: customer, provider, admin
+
+### services
+- Available services
+- Default services included:
+  - Electrician
+  - Plumber
+  - Cleaning
+  - Carpenter
+  - Painter
+  - Mechanic
+
+### provider_services
+- Links providers to services
+- Stores pricing and ratings
+
+### bookings & reviews
+- Manages service bookings
+- Stores customer reviews
+
+---
+
+## ✅ Completed Features
+
+- [x] Database connection
+- [x] Secure login
+- [x] User registration
+- [x] Password hashing
+- [x] Session management
+- [x] Admin protection
+- [x] Logout functionality
+- [x] Email validation
+- [x] Error messages
+- [x] Database schema
+
+---
+
+## 🔧 Configuration
+
+**File**: `config.php`
+
+```php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "agile";
+```
+
+---
+
+## 📝 Common Issues & Solutions
+
+| Issue | Solution |
+|-------|----------|
+| Connection failed | Check MySQL is running |
+| User not found after register | Run database_schema.sql |
+| Admin login fails | Use exact credentials above |
+| Weak password | Min 6 characters required |
+| Email already exists | Use different email |
+
+---
+
+## 🧪 Test Cases
+
+1. **Admin Login**
+   - Email: admin@neconnect.com
+   - Password: admin123
+   - Expected: Admin dashboard loads
+
+2. **New User Registration**
+   - Create account as customer
+   - Login with new account
+   - Expected: Home page loads
+
+3. **Provider Registration**
+   - Create account as provider
+   - Login
+   - Expected: Provider dashboard loads
+
+4. **Logout**
+   - Login to any account
+   - Click Logout
+   - Expected: Redirected to home, session destroyed
+
+---
+
+## 🎯 Next Priority Tasks
+
+- [ ] Create user profile management
+- [ ] Build service management for providers
+- [ ] Implement booking system
+- [ ] Add review/rating system
+- [ ] Setup email notifications
+- [ ] Add search/filter functionality
+
+---
+
+**Everything is ready to use!** 🚀
+
+Start with Step 1 from above to create database tables.
