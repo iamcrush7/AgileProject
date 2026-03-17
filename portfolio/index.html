@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of a Computer Science Student">
+    <title>CS Student Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#home" class="logo">CS<span>.Dev</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero section">
+            <div class="hero-content animate-hidden">
+                <p class="greeting">Hello, world! I am</p>
+                <h1 class="title">VL <span class="gradient-text">Developer</span></h1>
+                <h2 class="subtitle">Master of Computer Application Student</h2>
+                <p class="description">
+                    Passionate about building scalable backend systems, exploring artificial intelligence, and crafting
+                    beautiful, responsive user interfaces.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+            <div class="hero-image animate-hidden delay-1">
+                <div class="cartoon-character-container">
+                    <img src="images/cartoon.png" alt="Cartoon CS Student" class="cartoon-character">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about section">
+            <div class="section-title-container animate-hidden">
+                <h2 class="section-title">About Me</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text animate-hidden">
+                    <p>I am a Master of Computer Application student at Kristu Jayanti University, specializing in
+                        software engineering
+                        and algorithms. My journey began when I built my first game in Python, and since then, I've been
+                        fascinated by how technology can solve complex, real-world problems.</p>
+                    <p>When I'm not debugging code or studying for data structures exams, you can find me contributing
+                        to open-source projects, participating in hackathons, or reading about the latest tech trends.
+                    </p>
+                </div>
+                <div class="experience-timeline animate-hidden delay-1">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3>Software Engineering Intern</h3>
+                        <p class="timeline-date">Tech Corp • Summer 2025</p>
+                        <p>Developed scalable microservices using Node.js and Docker. Improved database query
+                            performance by 40%.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3>CS Undergraduate Researcher</h3>
+                        <p class="timeline-date">University Labs • Fall 2024</p>
+                        <p>Researched machine learning applications in predictive analytics using Python and TensorFlow.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills section">
+            <div class="section-title-container animate-hidden">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="skills-container animate-hidden">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript/TypeScript</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend & Design</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">HTML5/CSS3</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Data</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">REST APIs</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS (S3, EC2)</span>
+                        <span class="skill-tag">Linux</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects section">
+            <div class="section-title-container animate-hidden">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="project-grid">
+                <article class="project-card animate-hidden">
+                    <div class="project-content">
+                        <h3 class="project-title">Algorithmic Trading Bot</h3>
+                        <p class="project-desc">A Python-based trading bot that uses historical market data and simple
+                            moving averages to execute paper trades via the Alpaca API.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Pandas</span>
+                            <span>Alpaca API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">GitHub <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card animate-hidden delay-1">
+                    <div class="project-content">
+                        <h3 class="project-title">TaskMaster Pro</h3>
+                        <p class="project-desc">A full-stack productivity web app featuring drag-and-drop task
+                            management, real-time collaboration via WebSockets, and JWT authentication.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>Socket.io</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Live Demo <span>&rarr;</span></a>
+                            <a href="#" class="project-link">GitHub <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card animate-hidden delay-2">
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Campus Map</h3>
+                        <p class="project-desc">An interactive iOS application built for university students to find
+                            shortest paths between buildings using Dijkstra’s algorithm.</p>
+                        <div class="project-tech">
+                            <span>Swift</span>
+                            <span>MapKit</span>
+                            <span>Graph Theory</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">GitHub <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="contact section">
+            <div class="contact-box animate-hidden">
+                <h2 class="section-title">Let's Connect</h2>
+                <p>I'm currently looking for new opportunities, specifically focusing on software engineering
+                    internships. Whether you have a question or just want to say hi, I'll try my best to get back to
+                    you!</p>
+                <a href="mailto:hello@example.com" class="btn btn-primary cta-large">Say Hello</a>
+
+                <div class="social-links">
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ by VL Developer</p>
+        <p class="footer-sub">&copy; 2026 CS Student Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
