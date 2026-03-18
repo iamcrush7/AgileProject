@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
         }
 
         const body = await req.json()
-        const { providerId, serviceId, date, time, notes, totalPrice } = body
+        const { providerId, serviceId, date, time, notes, address, totalPrice } = body
 
         if (!providerId || !serviceId || !date || !time) {
             return NextResponse.json({ success: false, error: "Missing required booking fields" }, { status: 400 })
@@ -23,7 +23,10 @@ export async function POST(req: NextRequest) {
                 serviceId,
                 date: new Date(date),
                 time,
-                notes: notes || "",
+                notes: [
+                    address ? `SERVICE ADDRESS: ${address}` : null,
+                    notes || null
+                ].filter(Boolean).join("\n") || "",
                 totalPrice: Number(totalPrice),
                 status: "PENDING"
             }
@@ -60,7 +63,7 @@ export async function GET(req: NextRequest) {
             bookings = await prisma.booking.findMany({
                 where: { providerId: profile.id },
                 include: {
-                    user: { select: { name: true, email: true, phone: true } },
+                    user: { select: { name: true, email: true, phone: true, city: true, state: true } },
                     service: { select: { name: true } },
                 },
                 orderBy: { createdAt: "desc" },

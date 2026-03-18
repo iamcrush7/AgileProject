@@ -76,12 +76,12 @@ export default function ProviderServicesPage() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-extrabold text-white">My Services</h1>
-                    <p className="text-gray-400 text-sm mt-0.5">Manage your offered services and pricing</p>
+                    <h1 className="text-2xl font-bold text-primary tracking-tight">My Services</h1>
+                    <p className="text-secondary text-sm mt-0.5 font-medium">Manage your offered services and pricing</p>
                 </div>
                 <button
                     onClick={() => { resetForm(); setShowForm(true) }}
-                    className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-indigo-500/20 text-sm"
+                    className="flex items-center space-x-2 bg-primary hover:bg-primary/90 text-background font-bold px-4 py-2.5 rounded-xl transition-all shadow-md shadow-primary/20 text-sm"
                 >
                     <Plus size={18} />
                     <span>Add Service</span>
@@ -93,16 +93,16 @@ export default function ProviderServicesPage() {
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-6 rounded-2xl border border-indigo-500/30 bg-indigo-500/5"
+                    className="p-8 rounded-2xl border border-primary/20 bg-stone-50 shadow-inner"
                 >
-                    <h3 className="font-extrabold text-white mb-5">{editingId ? "Edit Service" : "Add New Service"}</h3>
-                    <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <h3 className="font-bold text-xl text-primary mb-6 tracking-tight">{editingId ? "Edit Service" : "Add New Service"}</h3>
+                    <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <input
                             required
                             value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
                             placeholder="Service Name (e.g. Fan Installation)"
-                            className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-indigo-500/50 placeholder-gray-600 col-span-full"
+                            className="bg-white border border-border rounded-xl px-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 col-span-full shadow-sm"
                         />
                         <textarea
                             required
@@ -110,10 +110,10 @@ export default function ProviderServicesPage() {
                             onChange={(e) => setForm({ ...form, description: e.target.value })}
                             placeholder="Brief description..."
                             rows={2}
-                            className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-indigo-500/50 placeholder-gray-600 col-span-full resize-none"
+                            className="bg-white border border-border rounded-xl px-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 col-span-full resize-none shadow-sm"
                         />
                         <div className="relative">
-                            <DollarSign size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+                            <DollarSign size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" />
                             <input
                                 required
                                 type="number"
@@ -122,7 +122,7 @@ export default function ProviderServicesPage() {
                                 value={form.price}
                                 onChange={(e) => setForm({ ...form, price: e.target.value })}
                                 placeholder="Price (₹)"
-                                className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-sm outline-none focus:border-indigo-500/50 placeholder-gray-600"
+                                className="w-full bg-white border border-border rounded-xl pl-10 pr-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 shadow-sm"
                             />
                         </div>
                         <input
@@ -132,21 +132,21 @@ export default function ProviderServicesPage() {
                             value={form.estimatedTime}
                             onChange={(e) => setForm({ ...form, estimatedTime: e.target.value })}
                             placeholder="Est. time (minutes)"
-                            className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-indigo-500/50 placeholder-gray-600"
+                            className="bg-white border border-border rounded-xl px-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 shadow-sm"
                         />
                         <select
                             required
                             value={form.categoryId}
                             onChange={(e) => setForm({ ...form, categoryId: e.target.value })}
-                            className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-indigo-500/50 col-span-full"
+                            className="bg-white border border-border rounded-xl px-4 py-3 text-primary text-sm outline-none focus:border-primary/50 col-span-full shadow-sm"
                         >
-                            <option value="" className="bg-gray-900">Select category...</option>
-                            {categories.map((c) => <option key={c.id} value={c.id} className="bg-gray-900">{c.name}</option>)}
+                            <option value="">Select category...</option>
+                            {categories.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
                         </select>
 
-                        <div className="col-span-full flex space-x-3 pt-2">
-                            <button type="button" onClick={resetForm} className="px-5 py-2.5 rounded-xl border border-white/10 text-gray-400 font-bold hover:bg-white/5 text-sm">Cancel</button>
-                            <button type="submit" disabled={saving} className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm flex items-center space-x-2 disabled:opacity-50">
+                        <div className="col-span-full flex space-x-3 pt-4 border-t border-border mt-2">
+                            <button type="button" onClick={resetForm} className="px-5 py-2.5 rounded-xl border border-border text-secondary font-bold hover:bg-stone-100 hover:text-primary transition-colors text-sm">Cancel</button>
+                            <button type="submit" disabled={saving} className="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary/90 text-background font-bold text-sm flex items-center space-x-2 disabled:opacity-50 shadow-md shadow-primary/10">
                                 {saving && <Loader2 size={14} className="animate-spin" />}
                                 <span>{editingId ? "Save Changes" : "Add Service"}</span>
                             </button>
@@ -160,10 +160,10 @@ export default function ProviderServicesPage() {
                     {[1, 2, 3].map((n) => <div key={n} className="h-40 rounded-2xl bg-white/5 animate-pulse border border-white/10" />)}
                 </div>
             ) : services.length === 0 ? (
-                <div className="text-center py-20 rounded-3xl border border-dashed border-white/10">
-                    <Package size={48} className="mx-auto text-gray-600 mb-3" />
-                    <p className="text-gray-400 font-semibold">No services yet</p>
-                    <p className="text-gray-600 text-sm mt-1">Add your first service to start getting bookings</p>
+                <div className="text-center py-24 rounded-3xl border border-dashed border-border bg-stone-50/50">
+                    <Package size={56} className="mx-auto text-stone-300 mb-4" />
+                    <p className="text-secondary font-bold text-lg">No services yet</p>
+                    <p className="text-muted text-sm mt-1">Add your first service to start getting bookings</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -173,24 +173,24 @@ export default function ProviderServicesPage() {
                             initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.06 }}
-                            className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group"
+                            className="p-6 rounded-2xl bg-surface border border-border hover:border-primary/30 hover:shadow-md transition-all group"
                         >
-                            <div className="flex items-start justify-between mb-3">
-                                <span className="text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2 py-0.5 rounded-full">{s.category?.name}</span>
+                            <div className="flex items-start justify-between mb-4">
+                                <span className="text-xs font-bold bg-stone-100 text-primary border border-border px-2.5 py-1 rounded-full">{s.category?.name}</span>
                                 <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button onClick={() => openEdit(s)} className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-                                        <Edit2 size={14} />
+                                    <button onClick={() => openEdit(s)} className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-stone-100 transition-colors">
+                                        <Edit2 size={16} />
                                     </button>
-                                    <button onClick={() => deleteService(s.id)} className="p-1.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-colors">
-                                        <Trash2 size={14} />
+                                    <button onClick={() => deleteService(s.id)} className="p-2 rounded-lg text-secondary hover:text-red-600 hover:bg-red-50 transition-colors">
+                                        <Trash2 size={16} />
                                     </button>
                                 </div>
                             </div>
-                            <h3 className="font-extrabold text-white mb-1">{s.name}</h3>
-                            <p className="text-gray-500 text-xs mb-4 line-clamp-2">{s.description}</p>
-                            <div className="flex items-center justify-between">
-                                <span className="text-xl font-extrabold text-indigo-400">₹{s.price.toLocaleString()}</span>
-                                <span className="text-xs text-gray-600">~{s.estimatedTime} min</span>
+                            <h3 className="font-bold text-lg text-primary mb-1.5 tracking-tight">{s.name}</h3>
+                            <p className="text-secondary text-sm mb-5 line-clamp-2 leading-relaxed">{s.description}</p>
+                            <div className="flex items-center justify-between pt-4 border-t border-stone-50">
+                                <span className="text-2xl font-bold text-primary">₹{s.price.toLocaleString()}</span>
+                                <span className="text-xs font-bold text-secondary uppercase tracking-wider">~{s.estimatedTime} min</span>
                             </div>
                         </motion.div>
                     ))}

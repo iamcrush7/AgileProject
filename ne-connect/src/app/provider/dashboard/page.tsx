@@ -1,14 +1,14 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import Link from "next/link"
-import { Briefcase, Star, CheckCircle, ArrowRight, Clock, Zap, Activity, MapPin } from "lucide-react"
+import { Briefcase, Star, CheckCircle, ArrowRight, Clock, Zap, Activity, MapPin, UserCircle } from "lucide-react"
 
 const statusConfig: Record<string, { label: string, color: string, dot: string }> = {
-    PENDING: { label: "Pending", color: "text-amber-600 bg-amber-50 border-amber-200 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/20", dot: "bg-amber-500" },
-    CONFIRMED: { label: "Confirmed", color: "text-blue-600 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-400/10 dark:border-blue-400/20", dot: "bg-blue-500" },
-    IN_PROGRESS: { label: "In Progress", color: "text-purple-600 bg-purple-50 border-purple-200 dark:text-purple-400 dark:bg-purple-400/10 dark:border-purple-400/20", dot: "bg-purple-500 animate-pulse" },
-    COMPLETED: { label: "Completed", color: "text-emerald-600 bg-emerald-50 border-emerald-200 dark:text-emerald-400 dark:bg-emerald-400/10 dark:border-emerald-400/20", dot: "bg-emerald-500" },
-    CANCELLED: { label: "Cancelled", color: "text-gray-600 bg-gray-50 border-gray-200 dark:text-gray-400 dark:bg-gray-400/10 dark:border-gray-400/20", dot: "bg-gray-500" },
+    PENDING: { label: "Pending", color: "text-amber-700 bg-amber-50 border-amber-200", dot: "bg-amber-500" },
+    CONFIRMED: { label: "Confirmed", color: "text-blue-700 bg-blue-50 border-blue-200", dot: "bg-blue-500" },
+    IN_PROGRESS: { label: "In Progress", color: "text-purple-700 bg-purple-50 border-purple-200", dot: "bg-purple-500 animate-pulse" },
+    COMPLETED: { label: "Completed", color: "text-emerald-700 bg-emerald-50 border-emerald-200", dot: "bg-emerald-500" },
+    CANCELLED: { label: "Cancelled", color: "text-stone-600 bg-stone-50 border-stone-200", dot: "bg-stone-500" },
 }
 
 export default async function ProviderDashboardHome() {
@@ -50,7 +50,7 @@ export default async function ProviderDashboardHome() {
         { label: "Manage Jobs", href: "/provider/dashboard/jobs", icon: Briefcase, color: "text-indigo-500" },
         { label: "My Services", href: "/provider/dashboard/services", icon: Zap, color: "text-emerald-500" },
         { label: "Reviews", href: "/provider/dashboard/reviews", icon: Star, color: "text-yellow-500" },
-        { label: "Availability", href: "/provider/dashboard/availability", icon: Clock, color: "text-blue-500" },
+        { label: "Public Profile", href: "/provider/dashboard/profile", icon: UserCircle, color: "text-purple-500" },
     ]
 
     return (
@@ -70,7 +70,7 @@ export default async function ProviderDashboardHome() {
                         <p className="flex items-center gap-1.5 text-sm text-secondary mt-1">
                             <MapPin size={14} />{profile.stateServed}
                             {profile.verified && (
-                                <span className="ml-2 flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20">
+                                <span className="ml-2 flex items-center gap-1 px-2 py-0.5 text-xs font-bold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                                     <CheckCircle size={10} /> Verified
                                 </span>
                             )}
@@ -86,8 +86,8 @@ export default async function ProviderDashboardHome() {
             {/* ── Stats grid ── */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                 {stats.map(({ label, value, icon: Icon }) => (
-                    <div key={label} className="rounded-xl border border-border bg-surface p-5 shadow-sm flex items-center gap-4">
-                        <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0">
+                    <div key={label} className="rounded-xl border border-border bg-surface p-5 shadow-sm flex items-center gap-4 hover:border-primary/30 transition-colors">
+                        <div className="h-12 w-12 rounded-full bg-stone-100 flex items-center justify-center shrink-0">
                             <Icon size={20} className="text-primary" />
                         </div>
                         <div>
@@ -124,10 +124,10 @@ export default async function ProviderDashboardHome() {
                     
                     {!profile?.bookings || profile.bookings.length === 0 ? (
                         <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                            <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
-                                <Briefcase size={20} className="text-muted" />
+                            <div className="h-12 w-12 rounded-full bg-stone-100 flex items-center justify-center mb-4">
+                                <Briefcase size={20} className="text-secondary" />
                             </div>
-                            <h3 className="text-sm font-semibold text-primary">No bookings yet</h3>
+                            <h3 className="text-sm font-bold text-primary tracking-tight">No bookings yet</h3>
                             <p className="text-sm text-secondary mt-1 max-w-sm">When customers book your services, they will appear here.</p>
                         </div>
                     ) : (
@@ -138,9 +138,9 @@ export default async function ProviderDashboardHome() {
                                 const initials = customerName.charAt(0)
 
                                 return (
-                                    <div key={b.id} className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors gap-4">
+                                    <div key={b.id} className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 hover:bg-stone-50 transition-colors gap-4">
                                         <div className="flex items-start sm:items-center gap-4">
-                                            <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center font-semibold text-primary shrink-0 overflow-hidden">
+                                            <div className="h-10 w-10 rounded-full bg-stone-200 flex items-center justify-center font-bold text-primary shrink-0 overflow-hidden border border-border">
                                                 {b.user?.image ? (
                                                     <img src={b.user.image} alt={customerName} className="h-full w-full object-cover" />
                                                 ) : (
@@ -181,8 +181,8 @@ export default async function ProviderDashboardHome() {
                     </div>
                     <div className="divide-y divide-border">
                         {profile.reviews.map((r) => (
-                            <div key={r.id} className="px-6 py-4 flex flex-col sm:flex-row sm:items-start gap-4">
-                                <div className="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-primary font-semibold shrink-0">
+                            <div key={r.id} className="px-6 py-4 flex flex-col sm:flex-row sm:items-start gap-4 hover:bg-stone-50 transition-colors">
+                                <div className="h-10 w-10 rounded-full bg-stone-100 flex items-center justify-center text-primary font-bold shrink-0 border border-border">
                                     {r.user.name?.charAt(0) || "U"}
                                 </div>
                                 <div>
@@ -190,7 +190,7 @@ export default async function ProviderDashboardHome() {
                                         <p className="text-sm font-semibold text-primary">{r.user.name}</p>
                                         <div className="flex items-center gap-0.5">
                                             {Array.from({ length: 5 }).map((_, i) => (
-                                                <Star key={i} size={14} className={i < r.rating ? "text-yellow-500 fill-yellow-500" : "text-gray-300 dark:text-gray-700"} />
+                                                <Star key={i} size={14} className={i < r.rating ? "text-amber-500 fill-amber-500" : "text-stone-300"} />
                                             ))}
                                         </div>
                                     </div>

@@ -12,6 +12,8 @@ export default function ProviderProfilePage() {
     const [isLoading, setIsLoading] = useState(true)
     const [activeTab, setActiveTab] = useState("services")
     const [isSaved, setIsSaved] = useState(false)
+    const [selectedServiceIdx, setSelectedServiceIdx] = useState(0)
+    const [showServiceDropdown, setShowServiceDropdown] = useState(false)
 
     useEffect(() => {
         const fetchProvider = async () => {
@@ -64,6 +66,14 @@ export default function ProviderProfilePage() {
         { id: "reviews", label: "Reviews", count: provider.reviewsCount },
         { id: "about", label: "About" },
     ]
+
+    const selectedService = provider.services?.[selectedServiceIdx]
+
+    const handleBook = () => {
+        if (!selectedService) return
+        const url = `/booking/new?providerId=${provider.id}&serviceId=${selectedService.id}&serviceName=${encodeURIComponent(selectedService.name)}`
+        router.push(url)
+    }
 
     return (
         <div className="min-h-screen bg-background text-primary pb-24">
@@ -233,7 +243,7 @@ export default function ProviderProfilePage() {
                         </AnimatePresence>
                     </div>
 
-                    {/* Right Column: Booking Widget */}
+                                     {/* Right Column: Booking Widget */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-32">
                             <div className="bg-background border-2 border-primary rounded-3xl p-8 shadow-2xl shadow-indigo-500/10">
@@ -244,35 +254,63 @@ export default function ProviderProfilePage() {
                                     </div>
                                     <div className="p-6">
                                         <p className="text-sm text-secondary mb-2">Service starting from</p>
-                                        <div className="text-4xl font-black mb-6">₹{provider.startingPrice}</div>
+                                        <div className="text-4xl font-black mb-6">₹{selectedService?.price ?? provider.startingPrice}</div>
                                         
                                         <div className="space-y-4">
-                                            <div className="p-4 rounded-xl border border-border hover:border-primary transition-colors cursor-pointer group">
-                                                <div className="text-[10px] font-bold text-muted uppercase mb-1">Select Service</div>
-                                                <div className="flex justify-between items-center">
-                                                    <span className="font-bold text-sm">{provider.services?.[0]?.name || "Consultation"}</span>
-                                                    <ChevronRight size={16} className="text-muted group-hover:text-primary" />
-                                                </div>
+                                            {/* Service Selector */}
+                                            <div className="relative">
+                                                <button
+                                                    onClick={() => setShowServiceDropdown(!showServiceDropdown)}
+                                                    className="w-full p-4 rounded-xl border border-border hover:border-primary transition-colors cursor-pointer group text-left"
+                                                >
+                                                    <div className="text-[10px] font-bold text-muted uppercase mb-1">Select Service</div>
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="font-bold text-sm">{selectedService?.name || "Consultation"}</span>
+                                                        <ChevronRight size={16} className={`text-muted group-hover:text-primary transition-transform ${showServiceDropdown ? 'rotate-90' : ''}`} />
+                                                    </div>
+                                                </button>
+                                                {showServiceDropdown && provider.services?.length > 1 && (
+                                                    <div className="absolute top-full left-0 right-0 z-20 mt-1 bg-surface border border-border rounded-xl overflow-hidden shadow-lg">
+                                                        {provider.services.map((s: any, idx: number) => (
+                                                            <button
+                                                                key={s.id}
+                                                                onClick={() => { setSelectedServiceIdx(idx); setShowServiceDropdown(false) }}
+                                                                className={`w-full text-left px-4 py-3 text-sm hover:bg-stone-50 transition-colors flex justify-between items-center ${
+                                                                    idx === selectedServiceIdx ? 'font-bold text-primary bg-stone-50' : 'text-secondary'
+                                                                }`}
+                                                            >
+                                                                <span>{s.name}</span>
+                                                                <span className="font-bold text-xs">₹{s.price}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </div>
-                                            <div className="p-4 rounded-xl border border-border bg-surface flex items-center justify-between">
-                                                <div className="flex items-center gap-2 text-sm font-bold opacity-50">
+
+                                            {/* Instant Chat */}
+                                            <a
+                                                href={`mailto:${provider.email || ''}?subject=Chat with ${provider.name} on NE-Connect&body=Hi ${provider.name}, I'd like to discuss your service: ${selectedService?.name || ''}.`}
+                                                className="p-4 rounded-xl border border-border bg-surface flex items-center justify-between hover:border-primary transition-colors cursor-pointer group"
+                                            >
+                                                <div className="flex items-center gap-2 text-sm font-bold group-hover:text-primary transition-colors">
                                                     <MessageSquare size={16} /> Instant Chat
                                                 </div>
                                                 <div className="text-[10px] bg-indigo-500/20 text-indigo-600 px-2 py-0.5 rounded-full font-bold">Enabled</div>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
 
                                 <motion.button 
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-primary text-background py-5 rounded-2xl font-black text-lg shadow-[0_10px_40px_-10px_rgba(var(--primary-rgb),0.5)] flex items-center justify-center gap-2 group"
-                                >
-                                    Book Now
-                                    <Sparkles size={20} className="group-hover:animate-pulse" />
-                                </motion.button>
-                                <p className="mt-4 text-center text-xs text-muted font-medium">100% Secure Payment & Satisfaction Guaranteed</p>
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={handleBook}
+                                        disabled={!selectedService}
+                                        className="w-full bg-primary text-background py-5 rounded-2xl font-black text-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed"
+                                    >
+                                        Book Now <Sparkles size={20} className="group-hover:animate-pulse" />
+                                    </motion.button>
+                                <p className="mt-4 text-center text-xs text-muted font-medium">100% Secure Payment &amp; Satisfaction Guaranteed</p>
                             </div>
                         </div>
                     </div>

@@ -51,9 +51,9 @@ export function Testimonials() {
     const xRight = useTransform(scrollYProgress, [0, 1], [0, 400])
 
     return (
-        <section ref={containerRef} className="py-32 bg-gray-50 dark:bg-[#030712] relative overflow-hidden hidden-scrollbar">
+        <section ref={containerRef} className="py-32 bg-background relative overflow-hidden hidden-scrollbar">
             {/* Ambient Background Gradient mapping */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] rounded-full pointer-events-none opacity-50"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(58,51,46,0.05)_0%,transparent_70%)] rounded-full pointer-events-none opacity-50"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center relative z-10">
                 <motion.h2
@@ -61,9 +61,9 @@ export function Testimonials() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-4xl md:text-5xl lg:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight"
+                    className="text-4xl md:text-5xl lg:text-5xl font-extrabold text-foreground tracking-tight"
                 >
-                    Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-indigo-500">thousands</span> of families.
+                    Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-900 to-stone-600">thousands</span> of families.
                 </motion.h2>
             </div>
 
@@ -71,7 +71,7 @@ export function Testimonials() {
                 {/* Marquee Row 1 (Moves Left) */}
                 <motion.div style={{ x: xLeft }} className="flex space-x-6 w-max pl-4 sm:pl-8 mb-6">
                     {TESTIMONIALS.map((testimonial) => (
-                        <div key={`row1-${testimonial.id}`} className="w-[350px] md:w-[450px] bg-white dark:bg-[#111827] border border-gray-100 dark:border-gray-800 rounded-3xl p-8 shadow-lg">
+                        <div key={`row1-${testimonial.id}`} className="w-[350px] md:w-[450px] bg-white border border-border rounded-3xl p-8 shadow-sm">
                             <div className="flex space-x-1 mb-6">
                                 {[...Array(Math.floor(testimonial.rating))].map((_, i) => (
                                     <Star key={i} size={18} className="text-amber-400 fill-amber-400" />
@@ -191,8 +191,8 @@ export function Testimonials() {
                 </motion.div>
 
                 {/* Side Fade Overlays */}
-                <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-gray-50 dark:from-[#030712] to-transparent z-20 pointer-events-none"></div>
-                <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-gray-50 dark:from-[#030712] to-transparent z-20 pointer-events-none"></div>
+                <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none"></div>
+                <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none"></div>
             </div>
         </section>
     )

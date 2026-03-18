@@ -41,3 +41,13 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Sensitive / local files
+admin_login.txt
+providers_logins.txt
+providers_details.txt
+export_providers.ts
+remove_provider_images.ts
+test-db.ts
+test-output.txt
+prisma/dev.db

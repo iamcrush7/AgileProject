@@ -2,98 +2,13 @@
 
 import { Suspense, useState } from "react"
 import { Mail, Lock, User, Briefcase, Shield, Eye, EyeOff, ArrowRight, Check, Copy } from "lucide-react"
-import { signIn } from "next-auth/react"
+import { signIn, getSession } from "next-auth/react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 
 type UserRole = "user" | "provider"
 
-const DEMO_CREDENTIALS = [
-    {
-        role: "Admin",
-        email: "admin@ne-connect.com",
-        password: "Admin@12345",
-        redirect: "/admin/login",
-    },
-    {
-        role: "Customer",
-        email: "rahul.user@ne-connect.com",
-        password: "User@12345",
-        redirect: null,
-    },
-    {
-        role: "Provider",
-        email: "lalrinmawia.provider@ne-connect.com",
-        password: "Provider@12345",
-        redirect: null,
-    },
-]
-
-function CopyButton({ text }: { text: string }) {
-    const [copied, setCopied] = useState(false)
-    async function copy() {
-        await navigator.clipboard.writeText(text)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1500)
-    }
-    return (
-        <button onClick={copy} className="p-1 rounded text-muted hover:text-primary transition-colors">
-            {copied ? <Check size={12} className="text-emerald-500" /> : <Copy size={12} />}
-        </button>
-    )
-}
-
-function DemoPanel({ onFill }: { onFill: (email: string, password: string) => void }) {
-    if (process.env.NODE_ENV === "production") return null
-
-    return (
-        <div className="mt-8 rounded-lg border border-border bg-surface overflow-hidden">
-            <div className="w-full flex items-center justify-between px-4 py-3 border-b border-border bg-background">
-                <div className="flex items-center space-x-2">
-                    <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-                        Demo Credentials
-                    </span>
-                    <span className="text-[10px] bg-yellow-100 text-yellow-700 dark:bg-yellow-500/10 dark:text-yellow-500 px-1.5 py-0.5 rounded font-bold">DEV</span>
-                </div>
-            </div>
-
-            <div className="p-4 space-y-3">
-                {DEMO_CREDENTIALS.map((d) => (
-                    <div key={d.role} className="p-3 rounded-md border border-border bg-background">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-bold text-primary">{d.role}</span>
-                            {d.redirect ? (
-                                <Link
-                                    href={d.redirect}
-                                    className="text-xs font-semibold text-secondary hover:text-primary transition-colors"
-                                >
-                                    Go to login &rarr;
-                                </Link>
-                            ) : (
-                                <button
-                                    onClick={() => onFill(d.email, d.password)}
-                                    className="text-xs font-semibold text-primary underline hover:text-secondary transition-colors"
-                                >
-                                    Auto-fill &rarr;
-                                </button>
-                            )}
-                        </div>
-                        <div className="space-y-1">
-                            <div className="flex items-center space-x-2">
-                                <code className="text-xs text-secondary flex-1 truncate">{d.email}</code>
-                                <CopyButton text={d.email} />
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <code className="text-xs text-secondary">{d.password}</code>
-                                <CopyButton text={d.password} />
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
+// Demo credentials removed
 
 function LoginForm() {
     const router = useRouter()
@@ -105,11 +20,7 @@ function LoginForm() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState("")
 
-    function fillDemo(demoEmail: string, demoPassword: string) {
-        setEmail(demoEmail)
-        setPassword(demoPassword)
-        if (demoEmail.includes("provider")) setRole("provider")
-    }
+    // fillDemo removed
 
     async function handleLogin(e: React.FormEvent) {
         e.preventDefault()
@@ -124,7 +35,15 @@ function LoginForm() {
                 if (callbackUrl) {
                     router.push(callbackUrl)
                 } else {
-                    router.push("/")
+                    const session = await getSession()
+                    const userRole = (session?.user as any)?.role
+                    if (userRole === "ADMIN") {
+                        router.push("/admin/dashboard")
+                    } else if (userRole === "PROVIDER") {
+                        router.push("/provider/dashboard")
+                    } else {
+                        router.push("/user/dashboard")
+                    }
                 }
             }
         } catch {
@@ -206,14 +125,11 @@ function LoginForm() {
                             Don't have an account?{" "}
                             <Link href="/signup" className="text-primary font-medium hover:underline transition-colors">Create one free</Link>
                         </p>
-                        <Link href="/admin/login" className="inline-flex items-center space-x-1.5 text-xs text-muted hover:text-secondary transition-colors">
-                            <Shield size={12} /><span>Admin Portal</span>
-                        </Link>
+                        {/* Admin Link Removed */}
                     </div>
                 </div>
 
-                {/* Demo Credentials Panel */}
-                <DemoPanel onFill={fillDemo} />
+                {/* Demo Credentials Panel Removed */}
             </div>
         </div>
     )

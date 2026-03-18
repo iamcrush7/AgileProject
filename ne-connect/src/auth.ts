@@ -69,11 +69,16 @@ export const authConfig: any = {
         signIn: '/login',
     },
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token, user, trigger, session }) {
             if (user) {
                 token.id = user.id
                 // @ts-ignore
                 token.role = user.role
+                token.picture = user.image
+            }
+            if (trigger === "update" && session) {
+                if (session.name) token.name = session.name
+                if (session.image) token.picture = session.image
             }
             return token
         },
@@ -83,6 +88,8 @@ export const authConfig: any = {
                 session.user.id = token.id
                 // @ts-ignore
                 session.user.role = token.role
+                // @ts-ignore
+                session.user.image = token.picture as string | undefined | null
             }
             return session
         }

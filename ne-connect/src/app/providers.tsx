@@ -9,7 +9,7 @@ import { SessionProvider } from "next-auth/react"
 export function Providers({ children }: { children: ReactNode }) {
     return (
         <SessionProvider>
-            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+            <ThemeProvider attribute="class" defaultTheme="light" forcedTheme="light" enableSystem={false}>
                 <Navbar />
                 {children}
                 <Toaster position="bottom-right" />

@@ -24,55 +24,42 @@ function PremiumGeometry() {
 
     return (
         <group ref={groupRef}>
-            {/* Center piece - Abstract Glass Crystal */}
-            <Float speed={2} rotationIntensity={1} floatIntensity={1.5}>
-                <mesh position={[0, 0, 0]} scale={2.5}>
-                    <icosahedronGeometry args={[1, 0]} />
+            {/* Center piece - Abstract Sleek Glass Knot (Light Theme) */}
+            <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1}>
+                <mesh position={[0, 0, 0]} scale={1.8}>
+                    <torusKnotGeometry args={[1, 0.3, 128, 32]} />
                     <MeshTransmissionMaterial
                         backside
-                        samples={2} // Reduced from 4 for performance
-                        resolution={256} // Fixed low resolution for blur
+                        samples={3}
+                        resolution={256}
                         thickness={2}
                         chromaticAberration={0.05}
-                        anisotropy={0.1}
-                        distortion={0.2}
-                        distortionScale={0.5}
-                        temporalDistortion={0.1}
-                        iridescence={1}
-                        iridescenceIOR={1}
-                        iridescenceThicknessRange={[0, 1400]}
+                        anisotropy={0.2}
+                        distortion={0}
+                        distortionScale={0}
+                        temporalDistortion={0}
+                        iridescence={0.8}
+                        iridescenceIOR={1.1}
+                        iridescenceThicknessRange={[100, 400]}
                         clearcoat={1}
+                        color="#ffffff"
                     />
-                    <Edges scale={1.05} threshold={15} color="rgba(255,255,255,0.2)" />
+                    <Edges scale={1.01} threshold={30} color="rgba(0,0,0,0.05)" />
                 </mesh>
             </Float>
 
-            {/* Orbiting Elements representing different services */}
-            <Float speed={1.5} rotationIntensity={2} floatIntensity={2}>
-                <mesh position={[4, 2, -2]} scale={0.8} rotation={[0.5, 0.2, 0]}>
-                    <torusGeometry args={[1, 0.3, 16, 32]} />
-                    <MeshTransmissionMaterial backside thickness={1} chromaticAberration={0.1} color="#8b5cf6" />
+            {/* Orbiting Sleek Rings (Luxe Stone Theme) */}
+            <Float speed={1} rotationIntensity={1} floatIntensity={0.5}>
+                <mesh position={[3, 1.5, -2]} scale={1.5} rotation={[0.4, 0.2, 0]}>
+                    <torusGeometry args={[1, 0.02, 16, 64]} />
+                    <meshStandardMaterial color="#9C8E7C" metalness={0.6} roughness={0.1} />
                 </mesh>
             </Float>
 
-            <Float speed={2.5} rotationIntensity={1.5} floatIntensity={2.5}>
-                <mesh position={[-3, -2, 1]} scale={1}>
-                    <cylinderGeometry args={[0.5, 0.5, 2, 16]} />
-                    <MeshTransmissionMaterial backside thickness={1} chromaticAberration={0.1} color="#10b981" />
-                </mesh>
-            </Float>
-
-            <Float speed={2} rotationIntensity={2} floatIntensity={2}>
-                <mesh position={[-4, 3, -4]} scale={0.6}>
-                    <octahedronGeometry args={[1, 0]} />
-                    <MeshTransmissionMaterial backside thickness={1} chromaticAberration={0.1} color="#3b82f6" />
-                </mesh>
-            </Float>
-
-            <Float speed={1.2} rotationIntensity={1} floatIntensity={1}>
-                <mesh position={[3, -3, -3]} scale={1.2}>
-                    <sphereGeometry args={[1, 32, 32]} />
-                    <meshStandardMaterial color="#3b82f6" wireframe opacity={0.15} transparent />
+            <Float speed={1.2} rotationIntensity={1.5} floatIntensity={0.5}>
+                <mesh position={[-3, -1, 1]} scale={2} rotation={[-0.2, 0.5, 0.1]}>
+                    <torusGeometry args={[1, 0.01, 16, 64]} />
+                    <meshStandardMaterial color="#78716C" metalness={0.4} roughness={0.1} />
                 </mesh>
             </Float>
         </group>
@@ -84,32 +71,33 @@ export function HeroScene() {
     const isInView = useInView(containerRef, { margin: "200px" })
 
     return (
-        <div ref={containerRef} className="absolute inset-0 z-0 opacity-80 mix-blend-screen transition-opacity duration-1000">
+        <div ref={containerRef} className="absolute inset-0 z-0 opacity-100 transition-opacity duration-1000">
             {isInView && (
-                <Canvas camera={{ position: [0, 0, 10], fov: 45 }} dpr={[1, 1.5]} performance={{ min: 0.5 }}>
-                    <ambientLight intensity={0.5} />
-                    <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" />
-                    {/* Colored lights to accent the glass */}
-                    <pointLight position={[-10, 0, -5]} intensity={5} color="#8b5cf6" />
-                    <pointLight position={[10, -5, 5]} intensity={5} color="#10b981" />
+                <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 1.5]} performance={{ min: 0.5 }}>
+                    <ambientLight intensity={1.5} color="#ffffff" />
+                    <directionalLight position={[5, 10, 5]} intensity={2.5} color="#ffffff" castShadow />
+                    
+                    {/* Professional Accent Lights (Stone/Champagne) */}
+                    <pointLight position={[-8, 2, -5]} intensity={6} color="#9C8E7C" />
+                    <pointLight position={[8, -2, 5]} intensity={4} color="#78716C" />
 
-                    <Environment files="/potsdamer_platz_1k.hdr" />
+                    <Environment files="/potsdamer_platz_1k.hdr" background blur={1} />
 
                     <PremiumGeometry />
 
                     <ContactShadows
-                        position={[0, -4, 0]}
-                        opacity={0.4}
-                        scale={20}
-                        blur={2}
-                        far={10}
-                        resolution={128} // Reduced from 256 for performance
-                        color="#000000"
+                        position={[0, -3.5, 0]}
+                        opacity={0.15}
+                        scale={15}
+                        blur={2.5}
+                        far={5}
+                        resolution={256}
+                        color="#3A332E"
                     />
                 </Canvas>
             )}
-            {/* Soft Overlay to blend with UI */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white dark:via-[#030712]/50 dark:to-[#030712] pointer-events-none z-10"></div>
+            {/* Professional blend overlay (Luxe Stone Theme) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/40 via-[#FAF9F6]/80 to-[#FAF9F6] pointer-events-none z-10"></div>
         </div>
     )
 }

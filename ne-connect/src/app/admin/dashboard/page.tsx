@@ -4,11 +4,11 @@ import Link from "next/link"
 import { Users, Briefcase, CalendarRange, TrendingUp, ArrowRight, Shield, AlertCircle, CheckCircle, Zap } from "lucide-react"
 
 const statusConfig: Record<string, { label: string, color: string, dot: string }> = {
-    PENDING: { label: "Pending", color: "text-amber-600 bg-amber-50 border-amber-200 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/20", dot: "bg-amber-500" },
-    CONFIRMED: { label: "Confirmed", color: "text-blue-600 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-400/10 dark:border-blue-400/20", dot: "bg-blue-500" },
-    IN_PROGRESS: { label: "In Progress", color: "text-purple-600 bg-purple-50 border-purple-200 dark:text-purple-400 dark:bg-purple-400/10 dark:border-purple-400/20", dot: "bg-purple-500" },
-    COMPLETED: { label: "Completed", color: "text-emerald-600 bg-emerald-50 border-emerald-200 dark:text-emerald-400 dark:bg-emerald-400/10 dark:border-emerald-400/20", dot: "bg-emerald-500" },
-    CANCELLED: { label: "Cancelled", color: "text-gray-600 bg-gray-50 border-gray-200 dark:text-gray-400 dark:bg-gray-400/10 dark:border-gray-400/20", dot: "bg-gray-500" },
+    PENDING: { label: "Pending", color: "text-amber-600 bg-amber-50 border-amber-200", dot: "bg-amber-500" },
+    CONFIRMED: { label: "Confirmed", color: "text-blue-600 bg-blue-50 border-blue-200", dot: "bg-blue-500" },
+    IN_PROGRESS: { label: "In Progress", color: "text-purple-600 bg-purple-50 border-purple-200", dot: "bg-purple-500" },
+    COMPLETED: { label: "Completed", color: "text-emerald-600 bg-emerald-50 border-emerald-200", dot: "bg-emerald-500" },
+    CANCELLED: { label: "Cancelled", color: "text-gray-600 bg-gray-50 border-gray-200", dot: "bg-gray-500" },
 }
 
 export default async function AdminDashboardHome() {
@@ -67,7 +67,7 @@ export default async function AdminDashboardHome() {
 
                 {unverifiedProviders > 0 && (
                     <Link href="/admin/dashboard/providers"
-                        className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 dark:bg-amber-500/10 dark:border-amber-500/20 text-amber-600 dark:text-amber-400 text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-amber-100 dark:hover:bg-amber-500/15 transition-all">
+                        className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 text-amber-600 text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-amber-100 transition-all">
                         <AlertCircle size={16} />
                         {unverifiedProviders} Unverified
                     </Link>
@@ -111,8 +111,8 @@ export default async function AdminDashboardHome() {
                             <div className="flex items-start gap-3">
                                 <AlertCircle size={18} className="text-amber-500 shrink-0 mt-0.5" />
                                 <div>
-                                    <p className="text-sm font-bold text-amber-700 dark:text-amber-400">{unverifiedProviders} providers awaiting review</p>
-                                    <Link href="/admin/dashboard/providers" className="inline-block mt-1 text-xs font-medium text-amber-600 dark:text-amber-500 hover:text-amber-800 dark:hover:text-amber-300 transition-colors">Review now &rarr;</Link>
+                                    <p className="text-sm font-bold text-amber-700">{unverifiedProviders} providers awaiting review</p>
+                                    <Link href="/admin/dashboard/providers" className="inline-block mt-1 text-xs font-medium text-amber-600 hover:text-amber-800 transition-colors">Review now &rarr;</Link>
                                 </div>
                             </div>
                         </div>

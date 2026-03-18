@@ -31,14 +31,12 @@ const getRoleNav = (role: Role): NavSection[] => {
                     items: [
                         { name: "Overview", href: "/user/dashboard", icon: LayoutDashboard },
                         { name: "My Bookings", href: "/user/dashboard/bookings", icon: CalendarRange },
-                        { name: "Messages", href: "/user/dashboard/messages", icon: MessageSquare },
                     ]
                 },
                 {
                     title: "Account",
                     items: [
                         { name: "My Profile", href: "/user/dashboard/profile", icon: UserCircle },
-                        { name: "Settings", href: "/user/dashboard/settings", icon: Settings },
                     ]
                 }
             ]
@@ -55,7 +53,6 @@ const getRoleNav = (role: Role): NavSection[] => {
                     title: "Insights",
                     items: [
                         { name: "Reviews", href: "/provider/dashboard/reviews", icon: CheckSquare },
-                        { name: "Availability", href: "/provider/dashboard/availability", icon: CalendarRange },
                         { name: "Public Profile", href: "/provider/dashboard/profile", icon: UserCircle },
                     ]
                 }
@@ -120,16 +117,13 @@ export function DashboardSidebar({ role, isMobileOpen, setIsMobileOpen }: Sideba
                 {/* Logo & Header */}
                 <div className="h-16 flex items-center justify-between px-6 border-b border-border shrink-0">
                     <Link href="/" className="flex items-center gap-3">
-                        <div className={`w-8 h-8 rounded-md bg-gradient-to-br ${roleColors[role]} flex items-center justify-center text-background font-bold text-sm shadow-sm`}>
-                            NE
-                        </div>
                         <span className="font-semibold text-primary tracking-tight">NE-Connect</span>
                     </Link>
 
                     {/* Mobile close */}
                     <button 
                         onClick={() => setIsMobileOpen(false)} 
-                        className="lg:hidden p-1 rounded-md text-secondary hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        className="lg:hidden p-1 rounded-md text-secondary hover:text-primary hover:bg-stone-100 transition-colors"
                     >
                         <X size={20} />
                     </button>
@@ -163,8 +157,8 @@ export function DashboardSidebar({ role, isMobileOpen, setIsMobileOpen }: Sideba
                                         className={`
                                             flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors
                                             ${isActive
-                                                ? "bg-gray-100 dark:bg-gray-800 text-primary"
-                                                : "text-secondary hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:text-primary"
+                                                ? "bg-stone-100 text-primary font-bold shadow-sm"
+                                                : "text-secondary hover:bg-stone-50 hover:text-primary"
                                             }
                                         `}
                                     >
@@ -181,7 +175,7 @@ export function DashboardSidebar({ role, isMobileOpen, setIsMobileOpen }: Sideba
                 <div className="p-4 border-t border-border shrink-0">
                     <button
                         onClick={() => signOut({ callbackUrl: "/login" })}
-                        className="flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+                        className="flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
                     >
                         <LogOut size={18} className="shrink-0 text-red-500" />
                         Sign Out

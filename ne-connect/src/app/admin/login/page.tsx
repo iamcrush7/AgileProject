@@ -33,15 +33,7 @@ export default function AdminLoginPage() {
         }
     }
 
-    function CopyBtn({ text }: { text: string }) {
-        const [copied, setCopied] = useState(false)
-        return (
-            <button onClick={async () => { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500) }}
-                className="p-1 text-gray-400 hover:text-gray-700 dark:text-gray-600 dark:hover:text-gray-300 transition-colors">
-                {copied ? <Check size={12} className="text-emerald-500" /> : <Copy size={12} />}
-            </button>
-        )
-    }
+    // CopyBtn removed
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-[#030712] flex flex-col relative overflow-hidden">
@@ -116,28 +108,7 @@ export default function AdminLoginPage() {
                             </button>
                         </form>
 
-                        <div className="mt-6 pt-5 border-t border-gray-200 dark:border-white/10 text-center space-y-4">
-                            {process.env.NODE_ENV !== "production" && (
-                                <div className="p-3 rounded-xl bg-red-50 dark:bg-red-500/5 border border-red-100 dark:border-red-500/10 text-left">
-                                    <p className="text-xs font-extrabold text-red-600/60 dark:text-red-400/60 uppercase tracking-wider mb-2">🧪 Dev: Admin Demo</p>
-                                    <div className="flex items-center space-x-2">
-                                        <code className="text-xs text-gray-500 dark:text-gray-400 flex-1">admin@ne-connect.com</code>
-                                        <CopyBtn text="admin@ne-connect.com" />
-                                    </div>
-                                    <div className="flex items-center space-x-2 mt-1">
-                                        <code className="text-xs text-gray-500 dark:text-gray-400 flex-1">Admin@12345</code>
-                                        <CopyBtn text="Admin@12345" />
-                                    </div>
-                                    <button
-                                        type="button"
-                                        onClick={() => { setEmail("admin@ne-connect.com"); setPassword("Admin@12345") }}
-                                        className="mt-2 w-full text-xs text-red-600 dark:text-red-400 font-bold hover:text-red-500 transition-colors"
-                                    >
-                                        Auto-fill credentials →
-                                    </button>
-                                </div>
-                            )}
-                        </div>
+                        {/* Demo Panel Removed */}
                     </div>
                 </motion.div>
             </div>

@@ -86,7 +86,7 @@ const TrustCard = ({ feature, idx, isInView }: { feature: any, idx: number, isIn
                     scale: isHovered ? 1.05 : 1
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className={`relative h-full bg-white/5 dark:bg-black/30 backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[2rem] p-8 flex flex-col items-center text-center cursor-default transition-all duration-300 ${isHovered ? feature.glow : ''}`}
+                className={`relative h-full bg-white border border-border rounded-[2rem] p-8 flex flex-col items-center text-center cursor-default transition-all duration-300 ${isHovered ? 'shadow-xl' : 'shadow-sm'}`}
                 style={{ transformStyle: 'preserve-3d' }}
             >
                 {/* Glow Background */}
@@ -134,7 +134,7 @@ export function TrustSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 pb-2 inline-block"
+                        className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-stone-900 to-stone-600 pb-2 inline-block"
                     >
                         Why NE-Connect?
                     </motion.h2>
@@ -142,7 +142,7 @@ export function TrustSection() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium text-balance"
+                        className="text-lg md:text-xl text-secondary font-medium text-balance"
                     >
                         We're building the most reliable digital infrastructure for real-world services in the Northeast.
                     </motion.p>

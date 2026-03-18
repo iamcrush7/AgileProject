@@ -6,10 +6,10 @@ import type { NextRequest } from "next/server"
 const PROTECTED: { prefix: string; role: string; redirect: string }[] = [
     { prefix: "/user/dashboard", role: "USER", redirect: "/login" },
     { prefix: "/provider/dashboard", role: "PROVIDER", redirect: "/login" },
-    { prefix: "/admin/dashboard", role: "ADMIN", redirect: "/admin/login" },
+    { prefix: "/admin/dashboard", role: "ADMIN", redirect: "/login" },
     // Provider API
     { prefix: "/api/provider", role: "PROVIDER", redirect: "/login" },
-    { prefix: "/api/admin", role: "ADMIN", redirect: "/admin/login" },
+    { prefix: "/api/admin", role: "ADMIN", redirect: "/login" },
 ]
 
 // Role → correct dashboard (for wrong-role redirects)

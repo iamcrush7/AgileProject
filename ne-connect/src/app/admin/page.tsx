@@ -35,20 +35,20 @@ export default async function AdminDashboard() {
     })
 
     return (
-        <main className="min-h-screen bg-gray-50 dark:bg-[#030712] pt-28 pb-12 selection:bg-purple-500/30">
+        <main className="min-h-screen bg-background pt-28 pb-12 selection:bg-accent/30">
             <Navbar />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Welcome */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
                     <div>
-                        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-2">
+                        <h1 className="text-3xl font-extrabold text-primary tracking-tight mb-2">
                             Platform Command Center 🚀
                         </h1>
-                        <p className="text-gray-500 dark:text-gray-400 font-medium">Overview of the entire NE-Connect marketplace.</p>
+                        <p className="text-secondary font-medium">Overview of the entire NE-Connect marketplace.</p>
                     </div>
                     <div className="flex space-x-3">
-                        <button className="px-5 py-2.5 rounded-xl font-bold bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/10 transition-colors flex items-center">
+                        <button className="px-5 py-2.5 rounded-xl font-bold bg-surface border border-border text-primary hover:bg-stone-50 transition-colors flex items-center">
                             <Download size={16} className="mr-2" />
                             Export Data
                         </button>
@@ -57,14 +57,14 @@ export default async function AdminDashboard() {
 
                 {/* Top Stats Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    <div className="bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-3xl p-6 shadow-sm">
+                    <div className="bg-surface border border-border rounded-3xl p-6 shadow-sm">
                         <div className="flex items-center space-x-4 mb-4">
-                            <div className="w-12 h-12 rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                            <div className="w-12 h-12 rounded-2xl bg-stone-100 text-primary flex items-center justify-center">
                                 <Briefcase size={24} />
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Total Providers</p>
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{totalProviders}</h3>
+                                <p className="text-sm font-semibold text-muted uppercase tracking-wider">Total Providers</p>
+                                <h3 className="text-2xl font-bold text-primary">{totalProviders}</h3>
                             </div>
                         </div>
                     </div>

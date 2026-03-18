@@ -92,7 +92,7 @@ export default function ProvidersPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="text-4xl font-extrabold tracking-tight text-primary sm:text-6xl"
                     >
-                        Find Trusted <span className="text-indigo-600 dark:text-indigo-400">Pros</span>
+                        Find Trusted <span className="text-stone-800 underline decoration-accent/30">Pros</span>
                     </motion.h1>
                     <motion.p 
                         initial={{ opacity: 0, y: 20 }}
@@ -108,7 +108,7 @@ export default function ProvidersPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="mt-12 flex flex-col sm:flex-row gap-3 max-w-4xl bg-white dark:bg-gray-800 p-2 rounded-2xl shadow-xl border border-border"
+                        className="mt-12 flex flex-col sm:flex-row gap-3 max-w-4xl bg-surface p-2 rounded-2xl shadow-xl border border-border"
                     >
                         <div className="relative flex-grow">
                             <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
@@ -152,11 +152,11 @@ export default function ProvidersPage() {
                             <div className="bg-surface border border-border rounded-2xl p-6">
                                 <div className="flex items-center justify-between mb-6">
                                     <h3 className="text-sm font-bold text-primary flex items-center gap-2 uppercase tracking-tight">
-                                        <Filter size={16} className="text-indigo-500" /> Filters
+                                        <Filter size={16} className="text-accent" /> Filters
                                     </h3>
                                     <button 
                                         onClick={resetFilters}
-                                        className="text-xs font-semibold text-indigo-500 hover:text-indigo-600"
+                                        className="text-xs font-semibold text-accent hover:text-primary transition-colors"
                                     >
                                         Clear all
                                     </button>
@@ -205,9 +205,9 @@ export default function ProvidersPage() {
                                                 <button
                                                     key={rating}
                                                     onClick={() => setMinRating(minRating === rating ? null : rating)}
-                                                    className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-all ${minRating === rating ? 'bg-indigo-500/10 border-indigo-500 text-primary font-bold' : 'border-border text-secondary hover:border-indigo-500/30'}`}
+                                                    className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-all ${minRating === rating ? 'bg-accent/10 border-accent text-primary font-bold' : 'border-border text-secondary hover:border-accent/30'}`}
                                                 >
-                                                    <Star size={14} fill={minRating === rating ? "currentColor" : "none"} className={minRating === rating ? "text-indigo-500" : "text-muted"} />
+                                                    <Star size={14} fill={minRating === rating ? "currentColor" : "none"} className={minRating === rating ? "text-accent" : "text-muted"} />
                                                     {rating}+ stars
                                                 </button>
                                             ))}
@@ -217,10 +217,10 @@ export default function ProvidersPage() {
                             </div>
 
                             {/* Trust Badge */}
-                            <div className="bg-indigo-600 rounded-2xl p-6 text-white text-center">
-                                <ShieldCheck size={40} className="mx-auto mb-3 opacity-90" />
+                            <div className="bg-primary rounded-2xl p-6 text-white text-center shadow-lg">
+                                <ShieldCheck size={40} className="mx-auto mb-3 text-accent" />
                                 <h4 className="font-bold text-lg mb-1">Safe Booking</h4>
-                                <p className="text-white/80 text-xs">All pros are verified through our multi-step background check.</p>
+                                <p className="text-stone-300 text-xs">All pros are verified through our multi-step background check.</p>
                             </div>
                         </div>
                     </aside>
@@ -291,7 +291,7 @@ export default function ProvidersPage() {
                                                             <h3 className="text-lg font-bold text-primary leading-tight hover:text-indigo-600 transition-colors cursor-pointer">{provider.name}</h3>
                                                         </Link>
                                                         {provider.verified && (
-                                                            <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10 px-1.5 py-0.5 rounded-full uppercase">
+                                                            <div className="flex items-center gap-1 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded-full uppercase border border-emerald-200">
                                                                 <ShieldCheck size={10} /> Verified
                                                             </div>
                                                         )}
@@ -353,7 +353,7 @@ export default function ProvidersPage() {
                                 <p className="text-secondary mt-2">Try adjusting your filters or search keywords.</p>
                                 <button 
                                     onClick={resetFilters}
-                                    className="mt-6 text-indigo-500 font-bold hover:underline"
+                                    className="mt-6 text-accent font-bold hover:underline"
                                 >
                                     Clear all filters
                                 </button>

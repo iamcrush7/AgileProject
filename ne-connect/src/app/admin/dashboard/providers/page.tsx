@@ -50,19 +50,19 @@ export default function AdminProvidersPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-2xl font-extrabold text-white">Provider Management</h1>
-                <p className="text-gray-400 text-sm mt-0.5">Verify and manage service providers</p>
+                <h1 className="text-2xl font-extrabold text-primary">Provider Management</h1>
+                <p className="text-secondary text-sm mt-0.5">Verify and manage service providers</p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
-                    <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+                    <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
                     <input type="text" placeholder="Search providers..." value={search} onChange={(e) => setSearch(e.target.value)}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-2.5 text-white text-sm outline-none focus:border-indigo-500/50 placeholder-gray-600" />
+                        className="w-full bg-surface border border-border rounded-xl pl-11 pr-4 py-2.5 text-primary text-sm outline-none focus:border-primary placeholder:text-muted" />
                 </div>
-                <select value={verifiedFilter} onChange={(e) => setVerifiedFilter(e.target.value)} className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm outline-none">
+                <select value={verifiedFilter} onChange={(e) => setVerifiedFilter(e.target.value)} className="bg-surface border border-border rounded-xl px-4 py-2.5 text-primary text-sm outline-none">
                     {[["ALL", "All Providers"], ["VERIFIED", "Verified"], ["PENDING", "Pending Verification"]].map(([v, l]) => (
-                        <option key={v} value={v} className="bg-gray-900">{l}</option>
+                        <option key={v} value={v} className="bg-surface text-primary">{l}</option>
                     ))}
                 </select>
             </div>
@@ -73,17 +73,17 @@ export default function AdminProvidersPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {filtered.map((p, i) => (
                         <motion.div key={p.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}
-                            className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all">
+                            className="p-5 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-all shadow-sm">
                             <div className="flex items-start justify-between mb-3">
                                 <div>
-                                    <p className="font-extrabold text-white">{p.businessName || p.user.name}</p>
-                                    <p className="text-gray-500 text-xs mt-0.5">{p.user.email}</p>
+                                    <p className="font-extrabold text-primary">{p.businessName || p.user.name}</p>
+                                    <p className="text-muted text-xs mt-0.5">{p.user.email}</p>
                                 </div>
                                 <span className={`px-2 py-0.5 rounded-full text-xs font-bold border ${p.verified ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-orange-500/10 text-orange-400 border-orange-500/20"}`}>
                                     {p.verified ? "Verified" : "Pending"}
                                 </span>
                             </div>
-                            <div className="flex items-center space-x-3 text-xs text-gray-500 mb-4">
+                             <div className="flex items-center space-x-3 text-xs text-secondary mb-4">
                                 <span>📍 {p.stateServed || "N/A"}</span>
                                 <span>•</span>
                                 <span>{p.experience}yr exp</span>

@@ -17,15 +17,15 @@ const iconMap: Record<string, any> = {
 }
 
 const colorMap: Record<string, string> = {
-    "Home Services": "bg-amber-500/10 text-amber-500",
-    "Cleaning": "bg-emerald-500/10 text-emerald-500",
-    "Appliance": "bg-blue-500/10 text-blue-500",
-    "Electronics": "bg-purple-500/10 text-purple-500",
-    "Woodwork": "bg-orange-500/10 text-orange-500",
-    "Appliance Repair": "bg-cyan-500/10 text-cyan-500",
-    "Tech Services": "bg-indigo-500/10 text-indigo-500",
-    "Personal Services": "bg-pink-500/10 text-pink-500",
-    "Outdoor Services": "bg-green-500/10 text-green-500",
+    "Home Services": "bg-stone-200 text-stone-800",
+    "Cleaning": "bg-emerald-100 text-emerald-900 border border-emerald-200",
+    "Appliance": "bg-blue-100 text-blue-900 border border-blue-200",
+    "Electronics": "bg-purple-100 text-purple-900 border border-purple-200",
+    "Woodwork": "bg-orange-100 text-orange-900 border border-orange-200",
+    "Appliance Repair": "bg-cyan-100 text-cyan-900 border border-cyan-200",
+    "Tech Services": "bg-indigo-100 text-indigo-900 border border-indigo-200",
+    "Personal Services": "bg-pink-100 text-pink-900 border border-pink-200",
+    "Outdoor Services": "bg-green-100 text-green-900 border border-green-200",
 }
 
 const LOCATIONS = ["All Locations", "Assam", "Meghalaya", "Mizoram", "Nagaland", "Manipur", "Arunachal Pradesh", "Tripura", "Sikkim"]
@@ -64,10 +64,12 @@ export default function ServicesPage() {
         setIsLoading(true)
         setError("")
         try {
-            let url = `/api/services?q=${encodeURIComponent(searchQuery)}&state=${encodeURIComponent(selectedLocation)}`
+            let url = `/api/services?q=${encodeURIComponent(searchQuery)}`
+            if (selectedLocation && selectedLocation !== "All Locations") {
+                url += `&state=${encodeURIComponent(selectedLocation)}`
+            }
             if (selectedCategories.length > 0) {
-                // For simplicity, we filter by category names in the current API
-                // but we could also send IDs.
+                // Pass category ID
                 url += `&category=${encodeURIComponent(selectedCategories[0])}`
             }
             const res = await fetch(url)
@@ -82,9 +84,9 @@ export default function ServicesPage() {
         }
     }
 
-    const toggleCategory = (catName: string) => {
+    const toggleCategory = (catId: string) => {
         setSelectedCategories(prev => 
-            prev.includes(catName) ? prev.filter(c => c !== catName) : [catName] // Single select for now
+            prev.includes(catId) ? prev.filter(c => c !== catId) : [catId] // Single select for now
         )
     }
 
@@ -162,8 +164,8 @@ export default function ServicesPage() {
                                                 <label key={cat.id} className="flex items-center gap-3 cursor-pointer group">
                                                     <input 
                                                         type="checkbox" 
-                                                        checked={selectedCategories.includes(cat.name)}
-                                                        onChange={() => toggleCategory(cat.name)}
+                                                        checked={selectedCategories.includes(cat.id)}
+                                                        onChange={() => toggleCategory(cat.id)}
                                                         className="rounded-md border-border text-primary focus:ring-primary accent-primary w-4 h-4 cursor-pointer transition-colors" 
                                                     />
                                                     <span className="text-sm text-secondary group-hover:text-primary transition-colors">{cat.name}</span>
@@ -180,7 +182,7 @@ export default function ServicesPage() {
                                             setSelectedCategories([]);
                                             // fetchServices() is not needed here as useEffect tracks these states
                                         }}
-                                        className="w-full text-xs font-bold text-indigo-500 hover:text-indigo-600 transition-colors uppercase tracking-widest pt-6 border-t border-border active:scale-95"
+                                        className="w-full text-xs font-bold text-accent hover:text-primary transition-colors uppercase tracking-widest pt-6 border-t border-border active:scale-95"
                                     >
                                         Clear All Filters
                                     </button>
@@ -205,8 +207,8 @@ export default function ServicesPage() {
                         </div>
                         
                         {error && (
-                            <div className="bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 p-8 rounded-2xl text-center">
-                                <p className="text-red-600 dark:text-red-400 font-medium">{error}</p>
+                            <div className="bg-red-50 border border-red-200 p-8 rounded-2xl text-center">
+                                <p className="text-red-700 font-bold">{error}</p>
                             </div>
                         )}
 

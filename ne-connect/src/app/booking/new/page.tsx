@@ -356,7 +356,7 @@ function BookingContent() {
                                 </p>
                                 <div className="pt-10 flex flex-col gap-4 max-w-xs mx-auto">
                                     <button 
-                                        onClick={() => router.push("/dashboard/bookings")}
+                                        onClick={() => router.push("/user/dashboard/bookings")}
                                         className="w-full bg-primary text-background py-4 rounded-2xl font-bold shadow-xl shadow-primary/20 hover:scale-105 transition-all"
                                     >
                                         View My Bookings

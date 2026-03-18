@@ -4,14 +4,12 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useState, useRef, useEffect } from "react"
 import { Menu, X, User, LayoutDashboard, CalendarRange, Settings, LogOut, Briefcase, PackageSearch, Shield, ChevronDown } from "lucide-react"
-import { ThemeToggle } from "@/components/ThemeToggle"
-import { RegionSelector } from "@/components/RegionSelector"
 import { useSession, signOut } from "next-auth/react"
 
 const NAV_LINKS = [
     { name: "Services", path: "/services" },
     { name: "Providers", path: "/providers" },
-    { name: "How it Works", path: "/#how-it-works" },
+    { name: "How it Works", path: "/how-it-works" },
     { name: "About", path: "/about" },
 ]
 
@@ -19,12 +17,12 @@ const roleMenus: Record<string, { label: string; href: string; icon: any }[]> = 
     USER: [
         { label: "Dashboard", href: "/user/dashboard", icon: LayoutDashboard },
         { label: "Bookings", href: "/user/dashboard/bookings", icon: CalendarRange },
-        { label: "Settings", href: "/user/dashboard/settings", icon: Settings },
+        { label: "Settings", href: "/user/dashboard/profile", icon: Settings },
     ],
     PROVIDER: [
         { label: "Dashboard", href: "/provider/dashboard", icon: LayoutDashboard },
         { label: "Jobs", href: "/provider/dashboard/jobs", icon: Briefcase },
-        { label: "Settings", href: "/provider/dashboard/settings", icon: Settings },
+        { label: "Settings", href: "/provider/dashboard/profile", icon: Settings },
     ],
     ADMIN: [
         { label: "Admin Panel", href: "/admin/dashboard", icon: Shield },
@@ -64,11 +62,15 @@ function UserMenu() {
         <div ref={ref} className="relative">
             <button
                 onClick={() => setOpen(!open)}
-                className="flex items-center gap-2 rounded-full border border-border bg-surface p-1 pr-3 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="flex items-center gap-2 rounded-full border border-border bg-surface p-1 pr-3 transition-colors hover:bg-amber-100/50"
                 aria-label="Account menu"
             >
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-background">
-                    {initial}
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-medium text-background overflow-hidden border border-border">
+                    {(session.user as any).image ? (
+                        <img src={(session.user as any).image} alt={name} className="h-full w-full object-cover" />
+                    ) : (
+                        initial
+                    )}
                 </div>
                 <ChevronDown size={14} className="text-secondary" />
             </button>
@@ -86,7 +88,7 @@ function UserMenu() {
                                 key={item.href}
                                 href={item.href}
                                 onClick={() => setOpen(false)}
-                                className="flex items-center px-4 py-2 text-sm text-secondary hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-800"
+                                className="flex items-center px-4 py-2 text-sm text-secondary hover:bg-amber-100/50 hover:text-primary"
                             >
                                 <item.icon size={16} className="mr-3 text-muted" />
                                 {item.label}
@@ -97,7 +99,7 @@ function UserMenu() {
                     <div className="border-t border-border py-1">
                         <button
                             onClick={() => { setOpen(false); signOut({ callbackUrl: "/login" }) }}
-                            className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-800"
+                            className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-amber-100/50"
                         >
                             <LogOut size={16} className="mr-3" />
                             Sign out
@@ -134,9 +136,6 @@ export function Navbar() {
                 {/* Logo */}
                 <div className="flex items-center gap-8">
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-background font-bold text-lg">
-                            N
-                        </div>
                         <span className="text-lg font-semibold tracking-tight text-primary">
                             NE-Connect
                         </span>
@@ -161,19 +160,15 @@ export function Navbar() {
                 {/* Right side actions */}
                 <div className="flex items-center gap-4">
                     <div className="hidden md:flex items-center gap-4">
-                        <RegionSelector />
-                        <div className="h-5 w-px bg-border"></div>
-                        <ThemeToggle />
                         <UserMenu />
                     </div>
 
                     {/* Mobile Menu Toggle */}
                     <div className="flex md:hidden items-center gap-4">
-                        <ThemeToggle />
                         <UserMenu />
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="inline-flex items-center justify-center rounded-md p-2 text-secondary hover:bg-gray-100 hover:text-primary dark:hover:bg-gray-800"
+                            className="inline-flex items-center justify-center rounded-md p-2 text-secondary hover:bg-amber-100/50 hover:text-primary"
                         >
                             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
@@ -196,9 +191,6 @@ export function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <div className="p-2 border-t border-border mt-2 pt-4">
-                                <RegionSelector />
-                            </div>
                         </nav>
                     </div>
                 </div>

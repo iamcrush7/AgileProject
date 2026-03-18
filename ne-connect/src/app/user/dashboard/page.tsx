@@ -4,18 +4,18 @@ import Link from "next/link"
 import { CalendarRange, Zap, ArrowRight, Clock, CheckCircle, Star, MapPin, Sparkles, Plus, Search } from "lucide-react"
 
 const quickServices = [
-    { name: "Electrician", icon: Zap, slug: "electrician", color: "text-amber-500", bg: "bg-amber-50 dark:bg-amber-500/10" },
-    { name: "Plumber", icon: Zap, slug: "plumber", color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-500/10" },
-    { name: "Cleaning", icon: Sparkles, slug: "cleaning", color: "text-emerald-500", bg: "bg-emerald-50 dark:bg-emerald-500/10" },
-    { name: "AC Repair", icon: Zap, slug: "ac-repair", color: "text-cyan-500", bg: "bg-cyan-50 dark:bg-cyan-500/10" },
+    { name: "Electrician", icon: Zap, slug: "electrician", color: "text-amber-800", bg: "bg-amber-100 border border-amber-200" },
+    { name: "Plumber", icon: Zap, slug: "plumber", color: "text-blue-800", bg: "bg-blue-100 border border-blue-200" },
+    { name: "Cleaning", icon: Sparkles, slug: "cleaning", color: "text-emerald-800", bg: "bg-emerald-100 border border-emerald-200" },
+    { name: "AC Repair", icon: Zap, slug: "ac-repair", color: "text-cyan-800", bg: "bg-cyan-100 border border-cyan-200" },
 ]
 
 const statusConfig: Record<string, { label: string, color: string, dot: string }> = {
-    PENDING: { label: "Pending", color: "text-amber-600 bg-amber-50 border-amber-200 dark:text-amber-400 dark:bg-amber-400/10 dark:border-amber-400/20", dot: "bg-amber-500" },
-    CONFIRMED: { label: "Confirmed", color: "text-blue-600 bg-blue-50 border-blue-200 dark:text-blue-400 dark:bg-blue-400/10 dark:border-blue-400/20", dot: "bg-blue-500" },
-    IN_PROGRESS: { label: "In Progress", color: "text-purple-600 bg-purple-50 border-purple-200 dark:text-purple-400 dark:bg-purple-400/10 dark:border-purple-400/20", dot: "bg-purple-500 animate-pulse" },
-    COMPLETED: { label: "Completed", color: "text-emerald-600 bg-emerald-50 border-emerald-200 dark:text-emerald-400 dark:bg-emerald-400/10 dark:border-emerald-400/20", dot: "bg-emerald-500" },
-    CANCELLED: { label: "Cancelled", color: "text-gray-600 bg-gray-50 border-gray-200 dark:text-gray-400 dark:bg-gray-400/10 dark:border-gray-400/20", dot: "bg-gray-500" },
+    PENDING: { label: "Pending", color: "text-amber-700 bg-amber-100 border-amber-200", dot: "bg-amber-600" },
+    CONFIRMED: { label: "Confirmed", color: "text-blue-700 bg-blue-100 border-blue-200", dot: "bg-blue-600" },
+    IN_PROGRESS: { label: "In Progress", color: "text-purple-700 bg-purple-100 border-purple-200", dot: "bg-purple-600 animate-pulse" },
+    COMPLETED: { label: "Completed", color: "text-emerald-700 bg-emerald-100 border-emerald-200", dot: "bg-emerald-600" },
+    CANCELLED: { label: "Cancelled", color: "text-stone-600 bg-stone-100 border-stone-200", dot: "bg-stone-500" },
 }
 
 export default async function UserDashboardHome() {
@@ -67,7 +67,7 @@ export default async function UserDashboardHome() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
                 {stats.map(({ label, value, icon: Icon }) => (
                     <div key={label} className="rounded-xl border border-border bg-surface p-5 shadow-sm flex items-center gap-4">
-                        <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0">
+                        <div className="h-12 w-12 rounded-full bg-stone-100 flex items-center justify-center shrink-0">
                             <Icon size={20} className="text-primary" />
                         </div>
                         <div>
@@ -93,14 +93,14 @@ export default async function UserDashboardHome() {
 
                         {bookings.length === 0 ? (
                             <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                                <div className="h-12 w-12 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
-                                    <CalendarRange size={20} className="text-muted" />
+                                <div className="h-12 w-12 rounded-full bg-stone-100 flex items-center justify-center mb-4">
+                                    <CalendarRange size={20} className="text-secondary" />
                                 </div>
                                 <h3 className="text-sm font-semibold text-primary">No bookings yet</h3>
                                 <p className="text-sm text-secondary mt-1 max-w-sm">When you book a service, it will appear here so you can track its status.</p>
                                 <Link
                                     href="/services"
-                                    className="mt-6 inline-flex items-center justify-center rounded-md bg-transparent border border-border px-4 py-2 text-sm font-medium text-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                    className="mt-6 inline-flex items-center justify-center rounded-md bg-transparent border border-border px-4 py-2 text-sm font-medium text-primary hover:bg-stone-50 transition-colors"
                                 >
                                     Browse Services
                                 </Link>
@@ -113,9 +113,9 @@ export default async function UserDashboardHome() {
                                     const initials = providerName.charAt(0)
 
                                     return (
-                                        <div key={b.id} className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors gap-4">
+                                        <div key={b.id} className="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-4 hover:bg-stone-50/50 transition-colors gap-4">
                                             <div className="flex items-start sm:items-center gap-4">
-                                                <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center font-semibold text-primary shrink-0 overflow-hidden">
+                                                <div className="h-10 w-10 rounded-full bg-stone-100 border border-border flex items-center justify-center font-semibold text-primary shrink-0 overflow-hidden">
                                                     {b.provider.user.image ? (
                                                         <img src={b.provider.user.image} alt={providerName} className="h-full w-full object-cover" />
                                                     ) : (
@@ -133,8 +133,8 @@ export default async function UserDashboardHome() {
                                             </div>
                                             
                                             <div className="flex items-center justify-between sm:justify-end gap-6 sm:w-auto w-full border-t border-border sm:border-0 pt-3 sm:pt-0">
-                                                <div className="text-sm font-semibold text-primary">₹{b.totalPrice?.toLocaleString()}</div>
-                                                <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs font-semibold ${sc.color}`}>
+                                                <div className="text-sm font-extrabold text-primary">₹{b.totalPrice?.toLocaleString()}</div>
+                                                <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] font-black uppercase tracking-wider ${sc.color}`}>
                                                     <span className={`h-1.5 w-1.5 rounded-full ${sc.dot}`} />
                                                     {sc.label}
                                                 </div>
@@ -180,7 +180,7 @@ export default async function UserDashboardHome() {
                                 Contact Support
                             </Link>
                         </div>
-                        <div className="absolute -right-4 -bottom-4 h-24 w-24 rounded-full bg-gray-100 dark:bg-gray-800 blur-2xl z-0" />
+                        <div className="absolute -right-4 -bottom-4 h-24 w-24 rounded-full bg-stone-100 blur-2xl z-0" />
                     </div>
                 </div>
 

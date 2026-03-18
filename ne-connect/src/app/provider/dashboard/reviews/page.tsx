@@ -23,66 +23,66 @@ export default async function ProviderReviewsPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-2xl font-extrabold text-white">Reviews</h1>
-                <p className="text-gray-400 text-sm mt-0.5">Customer feedback and ratings for your services</p>
+                <h1 className="text-2xl font-bold text-primary tracking-tight">Reviews</h1>
+                <p className="text-secondary text-sm mt-0.5 font-medium">Customer feedback and ratings for your services</p>
             </div>
 
             {reviews.length === 0 ? (
-                <div className="text-center py-20 rounded-3xl border border-white/10 bg-white/5">
-                    <p className="text-5xl mb-3">⭐</p>
-                    <p className="text-gray-400 font-semibold">No reviews yet</p>
-                    <p className="text-gray-600 text-sm mt-1">Complete bookings to start receiving reviews</p>
+                <div className="text-center py-24 rounded-3xl border border-dashed border-border bg-stone-50/50">
+                    <p className="text-6xl mb-4">⭐</p>
+                    <p className="text-secondary font-bold text-lg">No reviews yet</p>
+                    <p className="text-muted text-sm mt-1">Complete bookings to start receiving reviews</p>
                 </div>
             ) : (
                 <>
                     {/* Rating Summary */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-8 rounded-3xl bg-white/5 border border-white/10">
-                        <div className="flex flex-col items-center justify-center">
-                            <p className="text-7xl font-extrabold text-white">{avgRating.toFixed(1)}</p>
-                            <div className="flex items-center space-x-1 my-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 p-10 rounded-3xl bg-surface border border-border shadow-sm">
+                        <div className="flex flex-col items-center justify-center text-center">
+                            <p className="text-8xl font-bold text-primary tracking-tighter">{avgRating.toFixed(1)}</p>
+                            <div className="flex items-center space-x-1 my-3">
                                 {[1, 2, 3, 4, 5].map((s) => (
-                                    <span key={s} className={`text-2xl ${s <= Math.round(avgRating) ? "text-yellow-400" : "text-gray-600"}`}>★</span>
+                                    <span key={s} className={`text-3xl ${s <= Math.round(avgRating) ? "text-amber-500" : "text-stone-300"}`}>★</span>
                                 ))}
                             </div>
-                            <p className="text-gray-400 text-sm">{reviews.length} total reviews</p>
+                            <p className="text-secondary font-medium">{reviews.length} total reviews</p>
                         </div>
-                        <div className="space-y-2 my-auto">
+                        <div className="space-y-3 my-auto">
                             {dist.map(({ star, count }) => (
-                                <div key={star} className="flex items-center space-x-3">
-                                    <span className="text-sm text-gray-400 w-8 text-right">{star}★</span>
-                                    <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div key={star} className="flex items-center space-x-4">
+                                    <span className="text-sm font-bold text-secondary w-8 text-right">{star}★</span>
+                                    <div className="flex-1 h-3 bg-stone-100 rounded-full overflow-hidden border border-stone-200">
                                         <div
-                                            className="h-full bg-yellow-400 rounded-full transition-all"
+                                            className="h-full bg-amber-500 rounded-full transition-all shadow-[0_0_10px_rgba(245,158,11,0.2)]"
                                             style={{ width: reviews.length > 0 ? `${(count / reviews.length) * 100}%` : "0%" }}
                                         />
                                     </div>
-                                    <span className="text-xs text-gray-600 w-6">{count}</span>
+                                    <span className="text-xs font-bold text-stone-400 w-6">{count}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Review List */}
-                    <div className="space-y-4">
+                    <div className="space-y-5">
                         {reviews.map((rev) => (
-                            <div key={rev.id} className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                                <div className="flex items-start justify-between mb-3">
-                                    <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                            <div key={rev.id} className="p-6 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-all shadow-sm group">
+                                <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-center space-x-4">
+                                        <div className="w-12 h-12 rounded-full bg-stone-100 border border-border flex items-center justify-center text-primary font-bold text-base shrink-0">
                                             {rev.user.name?.charAt(0) || "U"}
                                         </div>
                                         <div>
-                                            <p className="font-bold text-white text-sm">{rev.user.name || "Anonymous"}</p>
-                                            <p className="text-gray-600 text-xs">{new Date(rev.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</p>
+                                            <p className="font-bold text-primary text-base">{rev.user.name || "Anonymous"}</p>
+                                            <p className="text-stone-400 text-xs font-medium uppercase tracking-wider">{new Date(rev.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}</p>
                                         </div>
                                     </div>
-                                    <div className="flex">
+                                    <div className="flex bg-stone-50 px-2 py-1 rounded-lg border border-stone-100 shadow-sm">
                                         {[1, 2, 3, 4, 5].map((s) => (
-                                            <span key={s} className={`text-base ${s <= rev.rating ? "text-yellow-400" : "text-gray-700"}`}>★</span>
+                                            <span key={s} className={`text-base ${s <= rev.rating ? "text-amber-500" : "text-stone-200"}`}>★</span>
                                         ))}
                                     </div>
                                 </div>
-                                {rev.comment && <p className="text-gray-300 text-sm leading-relaxed">{rev.comment}</p>}
+                                {rev.comment && <p className="text-secondary text-sm leading-relaxed font-medium pl-1">{rev.comment}</p>}
                             </div>
                         ))}
                     </div>
