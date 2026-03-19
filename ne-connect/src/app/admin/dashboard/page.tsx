@@ -62,7 +62,7 @@ export default async function AdminDashboardHome() {
                         <p className="text-xs font-bold text-red-500 uppercase tracking-widest">Admin Command Center</p>
                     </div>
                     <h1 className="text-2xl font-bold text-primary tracking-tight">Platform Overview</h1>
-                    <p className="text-sm text-secondary mt-1">Monitor and manage the full NE-Connect marketplace.</p>
+                    <p className="text-sm text-secondary mt-1">Monitor and manage the full Sahyog-NE marketplace.</p>
                 </div>
 
                 {unverifiedProviders > 0 && (

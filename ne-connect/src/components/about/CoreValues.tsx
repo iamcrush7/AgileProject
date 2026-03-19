@@ -63,7 +63,7 @@ export function CoreValues() {
                         transition={{ delay: 0.2 }}
                         className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed"
                     >
-                        At NE-Connect, we aren't just building a marketplace; we're building a digital bridge for the Northeast.
+                        At Sahyog-NE, we aren't just building a marketplace; we're building a digital bridge for the Northeast.
                         Our core values are the heartbeat of everything we create.
                     </motion.p>
                 </div>

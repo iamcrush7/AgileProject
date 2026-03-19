@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Plus, Edit2, Trash2, Loader2, Package, DollarSign } from "lucide-react"
+import { Plus, Edit2, Trash2, Loader2, Package } from "lucide-react"
 
 type Service = {
     id: string
@@ -113,7 +113,7 @@ export default function ProviderServicesPage() {
                             className="bg-white border border-border rounded-xl px-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 col-span-full resize-none shadow-sm"
                         />
                         <div className="relative">
-                            <DollarSign size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" />
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-500 font-semibold text-sm">₹</span>
                             <input
                                 required
                                 type="number"
@@ -125,15 +125,22 @@ export default function ProviderServicesPage() {
                                 className="w-full bg-white border border-border rounded-xl pl-10 pr-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 shadow-sm"
                             />
                         </div>
-                        <input
+                        <select
                             required
-                            type="number"
-                            min="1"
                             value={form.estimatedTime}
                             onChange={(e) => setForm({ ...form, estimatedTime: e.target.value })}
-                            placeholder="Est. time (minutes)"
                             className="bg-white border border-border rounded-xl px-4 py-3 text-primary text-sm outline-none focus:border-primary/50 placeholder-stone-400 shadow-sm"
-                        />
+                        >
+                            <option value="">Estimated Duration...</option>
+                            <option value="30">30 minutes</option>
+                            <option value="60">1 hour</option>
+                            <option value="90">1.5 hours</option>
+                            <option value="120">2 hours</option>
+                            <option value="180">3 hours</option>
+                            <option value="240">4 hours</option>
+                            <option value="300">Half Day (5 hrs)</option>
+                            <option value="480">Full Day (8 hrs)</option>
+                        </select>
                         <select
                             required
                             value={form.categoryId}

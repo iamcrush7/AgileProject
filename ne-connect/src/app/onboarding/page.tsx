@@ -47,7 +47,7 @@ export default function OnboardingPage() {
                     </div>
                     <h2 className="text-2xl font-bold dark:text-white text-gray-900 mb-2">Application Submitted!</h2>
                     <p className="text-gray-600 dark:text-gray-400 mb-8">
-                        Your provider profile is under review. We will notify you once verified. Welcome to NE-Connect!
+                        Your provider profile is under review. We will notify you once verified. Welcome to Sahyog-NE!
                     </p>
                     <button onClick={() => window.location.href = "/"} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-colors">
                         Return to Dashboard

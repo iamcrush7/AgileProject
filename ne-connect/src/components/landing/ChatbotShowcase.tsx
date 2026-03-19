@@ -125,7 +125,7 @@ export function ChatbotShowcase() {
                                         <MessageCircle size={20} className="text-white fill-white/20" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-foreground text-sm">NE-Connect AI</h4>
+                                        <h4 className="font-bold text-foreground text-sm">Sahyog-NE AI</h4>
                                         <div className="flex items-center space-x-1">
                                             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                                             <span className="text-xs text-emerald-600 font-bold tracking-wide">Ready to help</span>

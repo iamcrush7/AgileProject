@@ -6,6 +6,8 @@ import type { NextRequest } from "next/server"
 const PROTECTED: { prefix: string; role: string; redirect: string }[] = [
     { prefix: "/user/dashboard", role: "USER", redirect: "/login" },
     { prefix: "/provider/dashboard", role: "PROVIDER", redirect: "/login" },
+    { prefix: "/provider/home", role: "PROVIDER", redirect: "/login" },
+    { prefix: "/provider/pending", role: "PROVIDER", redirect: "/login" },
     { prefix: "/admin/dashboard", role: "ADMIN", redirect: "/login" },
     // Provider API
     { prefix: "/api/provider", role: "PROVIDER", redirect: "/login" },
@@ -31,6 +33,16 @@ export default auth(function middleware(req) {
 
     const role: string | undefined = session?.user?.role
 
+    // Redirect providers away from the public home page
+    if (pathname === "/" && role === "PROVIDER") {
+        return NextResponse.redirect(new URL("/provider/home", nextUrl.origin))
+    }
+
+    // Redirect admins away from the public home page
+    if (pathname === "/" && role === "ADMIN") {
+        return NextResponse.redirect(new URL("/admin/dashboard", nextUrl.origin))
+    }
+
     for (const rule of PROTECTED) {
         if (!pathname.startsWith(rule.prefix)) continue
 
@@ -55,8 +67,11 @@ export default auth(function middleware(req) {
 
 export const config = {
     matcher: [
+        "/",
         "/user/dashboard/:path*",
         "/provider/dashboard/:path*",
+        "/provider/home",
+        "/provider/pending",
         "/admin/dashboard/:path*",
         "/api/provider/:path*",
         "/api/admin/:path*",

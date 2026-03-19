@@ -133,7 +133,7 @@ export function BookingSidebar({ provider }: { provider?: any }) {
                 <div className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-2xl p-4 mb-6 flex items-start space-x-3">
                     <ShieldCheck size={24} className="text-emerald-500 shrink-0" />
                     <div>
-                        <p className="text-xs font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider mb-1">NE-Connect Guarantee</p>
+                        <p className="text-xs font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider mb-1">Sahyog-NE Guarantee</p>
                         <p className="text-xs text-emerald-700 dark:text-emerald-500/80 font-medium">Payment is held securely until the service is completed to your satisfaction.</p>
                     </div>
                 </div>

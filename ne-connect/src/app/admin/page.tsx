@@ -1,7 +1,6 @@
 import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import { redirect } from "next/navigation"
-import { Navbar } from "@/components/layout/Navbar"
 import { PremiumFooter } from "@/components/landing/PremiumFooter"
 import { Users, Briefcase, CalendarCheck, TrendingUp, AlertCircle, ShieldCheck, Download } from "lucide-react"
 
@@ -36,7 +35,6 @@ export default async function AdminDashboard() {
 
     return (
         <main className="min-h-screen bg-background pt-28 pb-12 selection:bg-accent/30">
-            <Navbar />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header Welcome */}
@@ -45,7 +43,7 @@ export default async function AdminDashboard() {
                         <h1 className="text-3xl font-extrabold text-primary tracking-tight mb-2">
                             Platform Command Center 🚀
                         </h1>
-                        <p className="text-secondary font-medium">Overview of the entire NE-Connect marketplace.</p>
+                        <p className="text-secondary font-medium">Overview of the entire Sahyog-NE marketplace.</p>
                     </div>
                     <div className="flex space-x-3">
                         <button className="px-5 py-2.5 rounded-xl font-bold bg-surface border border-border text-primary hover:bg-stone-50 transition-colors flex items-center">

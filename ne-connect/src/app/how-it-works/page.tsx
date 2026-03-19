@@ -37,7 +37,7 @@ const steps = [
     {
         id: "04",
         title: "Rate & Pay",
-        description: "Once the job is done to your satisfaction, transparently pay for the service and leave a rating. Your feedback helps maintain the highest quality standards across the NE-Connect community.",
+        description: "Once the job is done to your satisfaction, transparently pay for the service and leave a rating. Your feedback helps maintain the highest quality standards across the Sahyog-NE community.",
         icon: Star,
         color: "from-rose-400 to-pink-500",
         shadow: "shadow-rose-500/20",
@@ -86,7 +86,7 @@ export default function HowItWorksPage() {
                             transition={{ duration: 0.6 }}
                             className="text-5xl md:text-7xl font-black tracking-tight text-foreground mb-6 leading-tight"
                         >
-                            How <span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500">NE-Connect</span> Works
+                            How <span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500">Sahyog-NE</span> Works
                         </motion.h1>
                         
                         <motion.p 

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NE-Connect | 3D Service Marketplace for Northeast India",
+  title: "Sahyog-NE | 3D Service Marketplace for Northeast India",
   description: "Find and book trusted local service providers across all Northeast Indian states.",
 };
 

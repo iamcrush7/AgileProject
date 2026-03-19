@@ -199,7 +199,7 @@ export function FeaturedProfessionals() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="text-xl md:text-2xl text-secondary font-medium"
                     >
-                        Every professional on NE-Connect is identity-verified, background-checked, and highly rated by your community.
+                        Every professional on Sahyog-NE is identity-verified, background-checked, and highly rated by your community.
                     </motion.p>
                 </div>
 

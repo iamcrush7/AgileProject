@@ -30,7 +30,7 @@ export function AuthForm({ defaultMode = "login", isAdmin = false }: { defaultMo
                         animate={{ opacity: 1, y: 0 }}
                         className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-emerald-500 dark:from-indigo-400 dark:to-emerald-300"
                     >
-                        {isAdmin ? "Admin Portal" : (mode === "login" ? "Welcome Back" : mode === "signup" ? "Join NE-Connect" : "Phone Login")}
+                        {isAdmin ? "Admin Portal" : (mode === "login" ? "Welcome Back" : mode === "signup" ? "Join Sahyog-NE" : "Phone Login")}
                     </motion.h2>
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         {isAdmin ? "Secure platform management access" : (userType === "user" ? "Find the best local professionals" : "Grow your service business today")}

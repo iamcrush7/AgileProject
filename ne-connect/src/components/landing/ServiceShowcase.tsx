@@ -7,14 +7,14 @@ import Link from "next/link"
 import { ArrowRight, Star, Zap, Wrench, Hammer, Snowflake, Tv, Leaf, Bug, Sparkles } from "lucide-react"
 
 const SERVICES = [
-    { id: 'electrician', name: 'Electrician', category: 'Home Repair', price: 149, rating: 4.8, image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80', icon: Zap, color: 'from-stone-500 to-stone-700' },
-    { id: 'plumber', name: 'Plumber', category: 'Pipe Fitting', price: 149, rating: 4.6, image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&q=80', icon: Wrench, color: 'from-slate-500 to-slate-700' },
-    { id: 'carpenter', name: 'Carpenter', category: 'Woodwork', price: 199, rating: 4.7, image: 'https://images.unsplash.com/photo-1581141849291-1125c7b692b5?w=800&q=80', icon: Hammer, color: 'from-stone-600 to-stone-800' },
-    { id: 'cleaning', name: 'House Cleaning', category: 'Deep Clean', price: 299, rating: 4.9, image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80', icon: Sparkles, color: 'from-neutral-500 to-stone-700' },
-    { id: 'ac-repair', name: 'AC Repair', category: 'Appliance', price: 399, rating: 4.7, image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80', icon: Snowflake, color: 'from-slate-400 to-slate-600' },
-    { id: 'refrigerator', name: 'Refrigerator Repair', category: 'Appliance', price: 399, rating: 4.5, image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&q=80', icon: Tv, color: 'from-stone-700 to-stone-900' },
-    { id: 'gardening', name: 'Gardening', category: 'Outdoor', price: 349, rating: 4.8, image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80', icon: Leaf, color: 'from-stone-500 to-slate-600' },
-    { id: 'pest-control', name: 'Pest Control', category: 'Maintenance', price: 799, rating: 4.9, image: 'https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?w=800&q=80', icon: Bug, color: 'from-slate-700 to-stone-900' }
+    { id: 'electrician', name: 'Electrician', category: 'Home Repair', price: 149, rating: 4.8, image: '/service_electrician.png', icon: Zap, color: 'from-stone-500 to-stone-700' },
+    { id: 'plumber', name: 'Plumber', category: 'Pipe Fitting', price: 149, rating: 4.6, image: '/service_plumber.png', icon: Wrench, color: 'from-slate-500 to-slate-700' },
+    { id: 'carpenter', name: 'Carpenter', category: 'Woodwork', price: 199, rating: 4.7, image: '/service_carpenter.png', icon: Hammer, color: 'from-stone-600 to-stone-800' },
+    { id: 'cleaning', name: 'House Cleaning', category: 'Deep Clean', price: 299, rating: 4.9, image: '/service_cleaning.png', icon: Sparkles, color: 'from-neutral-500 to-stone-700' },
+    { id: 'ac-repair', name: 'AC Repair', category: 'Appliance', price: 399, rating: 4.7, image: '/service_ac_repair.png', icon: Snowflake, color: 'from-slate-400 to-slate-600' },
+    { id: 'refrigerator', name: 'Refrigerator Repair', category: 'Appliance', price: 399, rating: 4.5, image: '/service_refrigerator.png', icon: Tv, color: 'from-stone-700 to-stone-900' },
+    { id: 'gardening', name: 'Gardening', category: 'Outdoor', price: 349, rating: 4.8, image: '/service_gardening.png', icon: Leaf, color: 'from-stone-500 to-slate-600' },
+    { id: 'pest-control', name: 'Pest Control', category: 'Maintenance', price: 799, rating: 4.9, image: '/service_pest_control.png', icon: Bug, color: 'from-slate-700 to-stone-900' }
 ]
 
 // Tilt Card implementation

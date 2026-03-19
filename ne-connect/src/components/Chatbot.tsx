@@ -25,7 +25,7 @@ export function Chatbot() {
     const [isOpen, setIsOpen] = useState(false)
     const [lang, setLang] = useState(LANGUAGES[0])
     const [messages, setMessages] = useState<{ role: "bot" | "user", text: string }[]>([
-        { role: "bot", text: "Hello! I am NE-Connect AI. How can I assist you today?" }
+        { role: "bot", text: "Hello! I am Sahyog-NE AI. How can I assist you today?" }
     ])
     const [input, setInput] = useState("")
     const [isTyping, setIsTyping] = useState(false)
@@ -109,7 +109,7 @@ export function Chatbot() {
                                     <MessageSquare size={20} />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-sm tracking-wide">NE-Connect AI</h3>
+                                    <h3 className="font-bold text-sm tracking-wide">Sahyog-NE AI</h3>
                                     <div className="flex items-center text-xs text-emerald-100 font-medium mt-0.5">
                                         <span className="w-2 h-2 bg-emerald-300 rounded-full animate-pulse mr-1.5"></span>
                                         Online (Fast Translate)

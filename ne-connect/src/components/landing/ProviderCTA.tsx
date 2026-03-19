@@ -33,7 +33,7 @@ export function ProviderCTA() {
                                 transition={{ duration: 0.6, delay: 0.2 }}
                                 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-[1.1]"
                             >
-                                Earn More by Joining <br /> NE-Connect
+                                Earn More by Joining <br /> Sahyog-NE
                             </motion.h2>
 
                             <motion.p

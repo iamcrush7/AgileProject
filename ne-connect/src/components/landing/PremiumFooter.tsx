@@ -13,7 +13,7 @@ export function PremiumFooter() {
                     {/* Brand Column */}
                     <div className="lg:col-span-4">
                         <Link href="/" className="inline-block text-3xl font-extrabold tracking-tighter text-foreground mb-6">
-                            NE<span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500">-Connect</span>
+                            Sahyog<span className="text-transparent bg-clip-text bg-gradient-to-r from-stone-900 via-stone-700 to-stone-500">-NE</span>
                         </Link>
                         <p className="text-secondary mb-8 max-w-sm leading-relaxed font-medium">
                             The ultimate digital marketplace for Northeast India. Connecting trusted local service professionals with the people who need them.
@@ -82,19 +82,20 @@ export function PremiumFooter() {
                             </li>
                         </ul>
 
-                        <button
+                        <Link
+                            href="/support"
                             className="group inline-flex items-center space-x-2 text-sm font-bold text-accent hover:text-primary transition-colors cursor-pointer"
                         >
                             <span>Get Support Now</span>
                             <MoveUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </button>
+                        </Link>
                     </div>
 
                 </div>
 
                 <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-muted text-sm font-medium">
-                        © {new Date().getFullYear()} NE-Connect. All rights reserved.
+                        © {new Date().getFullYear()} Sahyog-NE. All rights reserved.
                     </p>
                     <div className="flex items-center space-x-6 text-sm">
                         <Link href="#" className="text-muted font-medium hover:text-foreground transition-colors">Privacy Policy</Link>

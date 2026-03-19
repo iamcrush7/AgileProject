@@ -136,7 +136,7 @@ export function TrustSection() {
                         transition={{ duration: 0.6 }}
                         className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-stone-900 to-stone-600 pb-2 inline-block"
                     >
-                        Why NE-Connect?
+                        Why Sahyog-NE?
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

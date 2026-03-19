@@ -289,7 +289,7 @@ export default function ProviderProfilePage() {
 
                                             {/* Instant Chat */}
                                             <a
-                                                href={`mailto:${provider.email || ''}?subject=Chat with ${provider.name} on NE-Connect&body=Hi ${provider.name}, I'd like to discuss your service: ${selectedService?.name || ''}.`}
+                                                href={`mailto:${provider.email || ''}?subject=Chat with ${provider.name} on Sahyog-NE&body=Hi ${provider.name}, I'd like to discuss your service: ${selectedService?.name || ''}.`}
                                                 className="p-4 rounded-xl border border-border bg-surface flex items-center justify-between hover:border-primary transition-colors cursor-pointer group"
                                             >
                                                 <div className="flex items-center gap-2 text-sm font-bold group-hover:text-primary transition-colors">

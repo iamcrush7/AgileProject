@@ -166,7 +166,7 @@ export default function ServiceDetailPage({ params }: { params: Promise<{ id: st
                                     <span className="text-sm font-bold uppercase tracking-tight">Safety First</span>
                                 </div>
                                 <p className="text-xs text-secondary font-medium leading-relaxed">
-                                    All providers on NE-Connect undergo background checks and identity verification.
+                                    All providers on Sahyog-NE undergo background checks and identity verification.
                                 </p>
                             </div>
                         </div>

@@ -13,6 +13,13 @@ const NAV_LINKS = [
     { name: "About", path: "/about" },
 ]
 
+const PROVIDER_NAV_LINKS = [
+    { name: "Dashboard", path: "/provider/dashboard" },
+    { name: "Jobs", path: "/provider/dashboard/jobs" },
+    { name: "Services", path: "/provider/dashboard/services" },
+    { name: "Profile", path: "/provider/dashboard/profile" },
+]
+
 const roleMenus: Record<string, { label: string; href: string; icon: any }[]> = {
     USER: [
         { label: "Dashboard", href: "/user/dashboard", icon: LayoutDashboard },
@@ -115,6 +122,7 @@ export function Navbar() {
     const pathname = usePathname()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const { data: session } = useSession()
+    const role: string = (session?.user as any)?.role ?? ""
 
     // Hide on auth pages and dashboard pages
     const HIDDEN_PATHS = [
@@ -125,6 +133,7 @@ export function Navbar() {
     const isDashboard =
         pathname.startsWith("/user/dashboard") ||
         pathname.startsWith("/provider/dashboard") ||
+        pathname.startsWith("/provider/home") ||
         pathname.startsWith("/admin/dashboard") ||
         (pathname.startsWith("/admin") && pathname !== "/admin")
 
@@ -135,26 +144,32 @@ export function Navbar() {
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <div className="flex items-center gap-8">
-                    <Link href="/" className="flex items-center gap-2">
+                    <Link href={
+                            role === "PROVIDER" ? "/provider/home" :
+                            role === "ADMIN" ? "/admin/dashboard" :
+                            "/"
+                        } className="flex items-center gap-2">
                         <span className="text-lg font-semibold tracking-tight text-primary">
-                            NE-Connect
+                            Sahyog-NE
                         </span>
                     </Link>
 
-                    {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-6">
-                        {NAV_LINKS.map((link) => (
-                            <Link
-                                key={link.path}
-                                href={link.path}
-                                className={`text-sm font-medium transition-colors hover:text-primary ${
-                                    pathname === link.path ? "text-primary" : "text-secondary"
-                                }`}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </nav>
+                    {/* Desktop Nav — hide public links for PROVIDER/ADMIN */}
+                    {role !== "PROVIDER" && role !== "ADMIN" && (
+                        <nav className="hidden md:flex items-center gap-6">
+                            {NAV_LINKS.map((link) => (
+                                <Link
+                                    key={link.path}
+                                    href={link.path}
+                                    className={`text-sm font-medium transition-colors hover:text-primary ${
+                                        pathname === link.path ? "text-primary" : "text-secondary"
+                                    }`}
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                        </nav>
+                    )}
                 </div>
 
                 {/* Right side actions */}
@@ -176,8 +191,8 @@ export function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
-            {mobileMenuOpen && (
+            {/* Mobile Menu — hide public nav links for providers */}
+            {mobileMenuOpen && role !== "PROVIDER" && role !== "ADMIN" && (
                 <div className="fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-bottom-8 md:hidden bg-background">
                     <div className="relative z-20 grid gap-6 rounded-md bg-surface p-4 text-primary shadow-md border border-border">
                         <nav className="grid grid-flow-row auto-rows-max text-sm gap-4">

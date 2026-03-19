@@ -117,7 +117,7 @@ export function DashboardSidebar({ role, isMobileOpen, setIsMobileOpen }: Sideba
                 {/* Logo & Header */}
                 <div className="h-16 flex items-center justify-between px-6 border-b border-border shrink-0">
                     <Link href="/" className="flex items-center gap-3">
-                        <span className="font-semibold text-primary tracking-tight">NE-Connect</span>
+                        <span className="font-semibold text-primary tracking-tight">Sahyog-NE</span>
                     </Link>
 
                     {/* Mobile close */}

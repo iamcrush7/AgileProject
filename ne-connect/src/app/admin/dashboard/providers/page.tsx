@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Search, ShieldCheck, ShieldOff, Briefcase } from "lucide-react"
+import { Search, ShieldCheck, ShieldOff, Briefcase, Trash2 } from "lucide-react"
 
 type Provider = {
     id: string
@@ -20,6 +20,7 @@ export default function AdminProvidersPage() {
     const [verifiedFilter, setVerifiedFilter] = useState("ALL")
     const [isLoading, setIsLoading] = useState(true)
     const [updating, setUpdating] = useState<string | null>(null)
+    const [deleting, setDeleting] = useState<string | null>(null)
 
     useEffect(() => {
         fetch("/api/admin/providers")
@@ -39,6 +40,16 @@ export default function AdminProvidersPage() {
             setProviders((prev) => prev.map((p) => (p.id === id ? { ...p, verified: !current } : p)))
         }
         setUpdating(null)
+    }
+
+    async function deleteProvider(id: string, name: string) {
+        if (!confirm(`Are you sure you want to permanently remove "${name}"? This will delete their account, services, and all bookings.`)) return
+        setDeleting(id)
+        const res = await fetch(`/api/admin/providers/${id}`, { method: "DELETE" })
+        if (res.ok) {
+            setProviders((prev) => prev.filter((p) => p.id !== id))
+        }
+        setDeleting(null)
     }
 
     const filtered = providers.filter((p) => {
@@ -89,17 +100,29 @@ export default function AdminProvidersPage() {
                                 <span>{p.experience}yr exp</span>
                                 {p._count && <><span>•</span><span>{p._count.bookings} bookings</span></>}
                             </div>
-                            <button
-                                onClick={() => toggleVerification(p.id, p.verified)}
-                                disabled={updating === p.id}
-                                className={`w-full flex items-center justify-center space-x-2 py-2 rounded-xl text-xs font-bold transition-all ${p.verified
-                                        ? "bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20"
-                                        : "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20"
-                                    } disabled:opacity-50`}
-                            >
-                                {p.verified ? <ShieldOff size={14} /> : <ShieldCheck size={14} />}
-                                <span>{p.verified ? "Revoke Verification" : "Approve Provider"}</span>
-                            </button>
+                            <div className="flex gap-2 mt-3">
+                                <button
+                                    onClick={() => toggleVerification(p.id, p.verified)}
+                                    disabled={updating === p.id}
+                                    className={`flex-1 flex items-center justify-center space-x-2 py-2 rounded-xl text-xs font-bold transition-all ${p.verified
+                                            ? "bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20"
+                                            : "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20"
+                                        } disabled:opacity-50`}
+                                >
+                                    {p.verified ? <ShieldOff size={14} /> : <ShieldCheck size={14} />}
+                                    <span>{p.verified ? "Revoke" : "Approve"}</span>
+                                </button>
+                                <button
+                                    onClick={() => deleteProvider(p.id, p.businessName || p.user.name || "this provider")}
+                                    disabled={deleting === p.id}
+                                    className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-red-600/10 border border-red-600/20 text-red-500 hover:bg-red-600/20 transition-all disabled:opacity-50"
+                                >
+                                    {deleting === p.id
+                                        ? <span className="animate-spin w-3 h-3 border-2 border-red-400 border-t-transparent rounded-full" />
+                                        : <Trash2 size={14} />}
+                                    <span>Remove</span>
+                                </button>
+                            </div>
                         </motion.div>
                     ))}
                     {filtered.length === 0 && (

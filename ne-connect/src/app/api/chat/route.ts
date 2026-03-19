@@ -6,13 +6,13 @@ const translate = new Translate();
 
 // Pretranslated fast cache exactly as instructed
 const PRETRANSLATED_CACHE: Record<string, Record<string, string>> = {
-    "I am a virtual assistant for NE-Connect. I can help you find professionals, book a service, or become a provider.": {
-        hi: "मैं NE-Connect का वर्चुअल असिस्टेंट हूँ। मैं आपको पेशेवर खोजने, सेवा बुक करने या सेवा प्रदाता बनने में मदद कर सकता हूँ।",
-        as: "মই NE-Connect ৰ ভাৰ্চুৱেল এচিষ্টেণ্ট। মই আপোনাক পেছাদাৰী বিচাৰিবলৈ, চাৰ্ভিচ বুক কৰিবলৈ বা প্ৰদানকাৰী হ'বলৈ সহায় কৰিব পাৰো।",
-        lus: "NE-Connect virtual assistant ka ni a. Hnathawktu zawn, service book emaw provider nih theihnan ka pui thei che.",
-        "mni-Mtei": "NE-Connect-ki virtual assistant amani. Professionalls puthoknaba, service amabuk touba, nattraga provider ama oinaba mateng pangba ngammi.",
-        bn: "আমি NE-Connect এর ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি আপনাকে পেশাদার খুঁজতে, পরিষেবা বুক করতে বা প্রদানকারী হতে সাহায্য করতে পারি।",
-        ne: "म NE-Connect को भर्चुअल सहायक हुँ। म तपाईंलाई पेशेवरहरू फेला पार्न, सेवा बुक गर्न वा प्रदायक बन्न मद्दत गर्न सक्छु।"
+    "I am a virtual assistant for Sahyog-NE. I can help you find professionals, book a service, or become a provider.": {
+        hi: "मैं Sahyog-NE का वर्चुअल असिस्टेंट हूँ। मैं आपको पेशेवर खोजने, सेवा बुक करने या सेवा प्रदाता बनने में मदद कर सकता हूँ।",
+        as: "মই Sahyog-NE ৰ ভাৰ্চুৱেল এচিষ্টেণ্ট। মই আপোনাক পেছাদাৰী বিচাৰিবলৈ, চাৰ্ভিচ বুক কৰিবলৈ বা প্ৰদানকাৰী হ'বলৈ সহায় কৰিব পাৰো।",
+        lus: "Sahyog-NE virtual assistant ka ni a. Hnathawktu zawn, service book emaw provider nih theihnan ka pui thei che.",
+        "mni-Mtei": "Sahyog-NE-ki virtual assistant amani. Professionalls puthoknaba, service amabuk touba, nattraga provider ama oinaba mateng pangba ngammi.",
+        bn: "আমি Sahyog-NE এর ভার্চুয়াল অ্যাসিস্ট্যান্ট। আমি আপনাকে পেশাদার খুঁজতে, পরিষেবা বুক করতে বা প্রদানকারী হতে সাহায্য করতে পারি।",
+        ne: "म Sahyog-NE को भर्चुअल सहायक हुँ। म तपाईंलाई पेशेवरहरू फेला पार्न, सेवा बुक गर्न वा प्रदायक बन्न मद्दत गर्न सक्छु।"
     },
     "Sure, I can help you find an electrician. Which city or state are you in?": {
         hi: "ज़रूर, मैं आपको एक इलेक्ट्रीशियन खोजने में मदद कर सकता हूँ। आप किस शहर या राज्य में हैं?",
@@ -54,13 +54,13 @@ const PRETRANSLATED_CACHE: Record<string, Record<string, string>> = {
         bn: "দুর্দান্ত! ওই অঞ্চলে আমাদের অনেক প্রদানকারী রয়েছে। আপনার ঠিক কোন পরিষেবা প্রয়োজন তা আমাকে জানান।",
         ne: "उत्कृष्ट! त्यस क्षेत्रमा हाम्रा धेरै प्रदायकहरू छन्। तपाईंलाई कुन सेवा चाहिन्छ मलाई बताउनुहोस्।"
     },
-    "Hello! I am NE-Connect AI. How can I assist you today? I understand English and multiple Northeast Indian languages.": {
-        hi: "नमस्ते! मैं NE-Connect AI हूँ। आज मैं आपकी कैसे मदद कर सकता हूँ? मैं अंग्रेजी और कई पूर्वोत्तर भारतीय भाषाएं समझता हूँ।",
-        as: "নমস্কাৰ! মই NE-Connect AI। মই আপোনাক কেনেকৈ সহায় কৰিব পাৰো? মই ইংৰাজী আৰু উত্তৰ-পূব ভাৰতৰ একাধিক ভাষা বুজি পাওঁ।",
-        lus: "Chibai! NE-Connect AI ka ni e. Engtin nge ka puih theih che? Sap tawng leh hmar-chhak tawng tamtak ka hrethiam a ni.",
-        "mni-Mtei": "Khroomjari! Eihak NE-Connect AI ni. Eihakna mateng karamna pangba ngamgani? English amasung Northeast India gilon kaya eina khang-i.",
-        bn: "নমস্কার! আমি NE-Connect AI। আমি আজ আপনাকে কীভাবে সাহায্য করতে পারি? আমি ইংরেজি এবং উত্তর-পূর্ব ভারতের একাধিক ভাষা বুঝতে পারি।",
-        ne: "नमस्ते! म NE-Connect AI हुँ। आज म तपाईलाई कसरी सहयोग गर्न सक्छु? म अंग्रेजी र बहु ​​पूर्वोत्तर भारतीय भाषाहरू बुझ्छु।"
+    "Hello! I am Sahyog-NE AI. How can I assist you today? I understand English and multiple Northeast Indian languages.": {
+        hi: "नमस्ते! मैं Sahyog-NE AI हूँ। आज मैं आपकी कैसे मदद कर सकता हूँ? मैं अंग्रेजी और कई पूर्वोत्तर भारतीय भाषाएं समझता हूँ।",
+        as: "নমস্কাৰ! মই Sahyog-NE AI। মই আপোনাক কেনেকৈ সহায় কৰিব পাৰো? মই ইংৰাজী আৰু উত্তৰ-পূব ভাৰতৰ একাধিক ভাষা বুজি পাওঁ।",
+        lus: "Chibai! Sahyog-NE AI ka ni e. Engtin nge ka puih theih che? Sap tawng leh hmar-chhak tawng tamtak ka hrethiam a ni.",
+        "mni-Mtei": "Khroomjari! Eihak Sahyog-NE AI ni. Eihakna mateng karamna pangba ngamgani? English amasung Northeast India gilon kaya eina khang-i.",
+        bn: "নমস্কার! আমি Sahyog-NE AI। আমি আজ আপনাকে কীভাবে সাহায্য করতে পারি? আমি ইংরেজি এবং উত্তর-পূর্ব ভারতের একাধিক ভাষা বুঝতে পারি।",
+        ne: "नमस्ते! म Sahyog-NE AI हुँ। आज म तपाईलाई कसरी सहयोग गर्न सक्छु? म अंग्रेजी र बहु ​​पूर्वोत्तर भारतीय भाषाहरू बुझ्छु।"
     },
     // Single words / Quick actions
     "Find electrician": {
@@ -157,7 +157,7 @@ export async function POST(req: Request) {
 
         // Step 2: Generate English Response
         const lowerMsg = englishMessage.toLowerCase();
-        let botEnglishReply = "I am a virtual assistant for NE-Connect. I can help you find professionals, book a service, or become a provider.";
+        let botEnglishReply = "I am a virtual assistant for Sahyog-NE. I can help you find professionals, book a service, or become a provider.";
 
         if (lowerMsg.includes("electrician")) {
             botEnglishReply = "Sure, I can help you find an electrician. Which city or state are you in?";
@@ -170,7 +170,7 @@ export async function POST(req: Request) {
         } else if (lowerMsg.includes("assam") || lowerMsg.includes("guwahati") || lowerMsg.includes("mizoram")) {
             botEnglishReply = "Great! We have many providers in that region. Let me know the exact service you need.";
         } else if (lowerMsg.includes("hi") || lowerMsg.includes("hello")) {
-            botEnglishReply = "Hello! I am NE-Connect AI. How can I assist you today? I understand English and multiple Northeast Indian languages.";
+            botEnglishReply = "Hello! I am Sahyog-NE AI. How can I assist you today? I understand English and multiple Northeast Indian languages.";
         }
 
         // Step 3: Fast Translation to target Lang via Cache, fallback to live API

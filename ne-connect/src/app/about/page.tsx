@@ -195,7 +195,7 @@ export default function AboutPage() {
                 
                 <div className="max-w-4xl mx-auto text-center relative z-10">
                     <h2 className="text-4xl md:text-6xl font-black text-foreground mb-8 tracking-tight">Ready to experience the difference?</h2>
-                    <p className="text-xl text-secondary mb-12">Join thousands of customers who have already simplified their lives with NE-Connect.</p>
+                    <p className="text-xl text-secondary mb-12">Join thousands of customers who have already simplified their lives with Sahyog-NE.</p>
                     
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <Link href="/services" className="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:scale-105 active:scale-95 transition-all text-lg shadow-lg">

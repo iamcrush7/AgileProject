@@ -11,7 +11,7 @@ const TESTIMONIALS = [
         name: "Priya Sharma",
         role: "Homeowner from Guwahati",
         image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80",
-        quote: "Finding a reliable electrician was always a headache. NE-Connect made it possible in 2 minutes. Outstanding service!",
+        quote: "Finding a reliable electrician was always a headache. Sahyog-NE made it possible in 2 minutes. Outstanding service!",
         rating: 5
     },
     {

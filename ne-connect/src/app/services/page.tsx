@@ -286,7 +286,7 @@ export default function ServicesPage() {
             </div>
             
             <footer className="mt-24 border-t border-border bg-surface py-12 text-center">
-                <p className="text-sm font-medium text-secondary">© 2026 NE-Connect. All rights reserved.</p>
+                <p className="text-sm font-medium text-secondary">© 2026 Sahyog-NE. All rights reserved.</p>
             </footer>
         </div>
     )
