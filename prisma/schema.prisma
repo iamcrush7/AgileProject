@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// NextAuth Required Models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  phone         String?   @unique
+  password      String?
+  role          String    @default("USER") // 'USER', 'PROVIDER', 'ADMIN'
+  state         String?
+  city          String?
+
+  // Password reset
+  passwordResetToken  String?   @unique
+  passwordResetExpiry DateTime?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  provider      ProviderProfile?
+  bookings      Booking[]       @relation("UserBookings")
+  reviews       Review[]
+  messagesSent  Message[]       @relation("SentMessages")
+  messagesRec   Message[]       @relation("ReceivedMessages")
+  supportTickets SupportTicket[]
+}
+
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// App Models
+model ProviderProfile {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  businessName  String?
+  bio           String?  
+  experience    Int      @default(0) // years
+  verified      Boolean  @default(false)
+  
+  languages     String   // e.g. "English, Assamese, Hindi" storing as joined string for SQLite
+  stateServed   String?
+  citiesServed  String   @default("") // Joined string 
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  services      Service[]
+  bookings      Booking[]
+  reviews       Review[]
+  documents     ProviderDocument[]
+  availability  Availability[]
+}
+
+model ProviderDocument {
+  id          String   @id @default(cuid())
+  providerId  String
+  type        String   // e.g., 'ID_CARD', 'CERTIFICATE'
+  url         String
+  verified    Boolean  @default(false)
+  uploadedAt  DateTime @default(now())
+  provider    ProviderProfile @relation(fields: [providerId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  image       String?
+  services    Service[]
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Service {
+  id            String    @id @default(cuid())
+  name          String
+  description   String
+  price         Float
+  estimatedTime Int       // in minutes
+  
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+  
+  providerId    String
+  provider      ProviderProfile @relation(fields: [providerId], references: [id])
+
+  state         String?
+  city          String?
+
+  bookings      Booking[]
+  reviews       Review[]
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  userId      String
+  user        User          @relation("UserBookings", fields: [userId], references: [id])
+  providerId  String
+  provider    ProviderProfile @relation(fields: [providerId], references: [id])
+  serviceId   String
+  service     Service       @relation(fields: [serviceId], references: [id])
+  
+  date        DateTime
+  time        String
+  notes       String?       
+  status      String        @default("PENDING") // 'PENDING', 'CONFIRMED', 'COMPLETED', 'CANCELLED'
+  totalPrice  Float
+  
+  payment     Payment?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Payment {
+  id          String      @id @default(cuid())
+  bookingId   String      @unique
+  booking     Booking     @relation(fields: [bookingId], references: [id])
+  amount      Float
+  status      String      // e.g., 'PENDING', 'COMPLETED', 'FAILED'
+  method      String?     // e.g., 'UPI', 'CARD', 'CASH'
+  createdAt   DateTime    @default(now())
+}
+
+model Review {
+  id          String    @id @default(cuid())
+  rating      Int       // 1 to 5
+  comment     String?   
+  photos      String    @default("") // Joined string logic for SQLite
+  
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  providerId  String
+  provider    ProviderProfile @relation(fields: [providerId], references: [id])
+  serviceId   String?
+  service     Service?  @relation(fields: [serviceId], references: [id])
+  
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Availability {
+  id          String    @id @default(cuid())
+  providerId  String
+  provider    ProviderProfile @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  
+  dayOfWeek   Int       // 0-6 (Sunday-Saturday)
+  startTime   String    // "09:00"
+  endTime     String    // "17:00"
+  isAvailable Boolean   @default(true)
+}
+
+model Message {
+  id          String    @id @default(cuid())
+  senderId    String
+  sender      User      @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId  String
+  receiver    User      @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  
+  content     String
+  read        Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+}
+
+model SupportTicket {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  subject     String
+  description String
+  status      String    @default("OPEN")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+

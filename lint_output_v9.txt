@@ -1,0 +1,165 @@
+
+> ne-connect@0.1.0 lint
+> eslint
+
+
+/Users/admin/Anti/ne-connect/src/app/admin/dashboard/bookings/page.tsx
+  5:33  warning  'ChevronDown' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/admin/dashboard/page.tsx
+  15:11  warning  'session' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/admin/login/page.tsx
+  5:55  warning  'Copy' is defined but never used   @typescript-eslint/no-unused-vars
+  5:61  warning  'Check' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/admin/page.tsx
+  3:10  warning  'redirect' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/api/admin/providers/route.ts
+  1:10  warning  'NextRequest' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/api/admin/support/route.ts
+  18:14  warning  '_err' is defined but never used  @typescript-eslint/no-unused-vars
+  36:14  warning  '_err' is defined but never used  @typescript-eslint/no-unused-vars
+  55:14  warning  '_err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/api/admin/users/route.ts
+  1:10  warning  'NextRequest' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/api/auth/register/route.ts
+  11:25  warning  '_profession' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/api/provider/profile/route.ts
+  5:27  warning  '_req' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/api/user/profile/route.ts
+  5:27  warning  '_req' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/booking/new/page.tsx
+   69:19  warning  'aData' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  127:18  warning  'err' is defined but never used             @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/dashboard/page.tsx
+  5:27  warning  'MapPin' is defined but never used         @typescript-eslint/no-unused-vars
+  5:41  warning  'MessageSquare' is defined but never used  @typescript-eslint/no-unused-vars
+  5:56  warning  'CheckCircle' is defined but never used    @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/dashboard/provider/page.tsx
+  5:48  warning  'MapPin' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/how-it-works/page.tsx
+  4:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/login/page.tsx
+  4:39  warning  'Shield' is defined but never used  @typescript-eslint/no-unused-vars
+  4:72  warning  'Check' is defined but never used   @typescript-eslint/no-unused-vars
+  4:79  warning  'Copy' is defined but never used    @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/onboarding/page.tsx
+   8:21  warning  'Briefcase' is defined but never used  @typescript-eslint/no-unused-vars
+  71:36  warning  'i' is defined but never used          @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/provider/dashboard/page.tsx
+  144:53  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/admin/Anti/ne-connect/src/app/provider/dashboard/profile/page.tsx
+   87:18  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+  121:18  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/provider/pending/page.tsx
+  1:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/services/[id]/page.tsx
+   6:66  warning  'Loader2' is defined but never used         @typescript-eslint/no-unused-vars
+  49:12  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/support/page.tsx
+   7:10  warning  'Navbar' is defined but never used  @typescript-eslint/no-unused-vars
+  46:18  warning  'err' is defined but never used     @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/app/user/dashboard/profile/page.tsx
+   86:18  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+  120:18  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/auth.ts
+  10:23  warning  '_options' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/3d/HeroScene.tsx
+  13:15  warning  'state' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/3d/ParticleBackground.tsx
+  5:18  warning  'useMemo' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/dashboard/DashboardSidebar.tsx
+   8:5   warning  'Settings' is defined but never used             @typescript-eslint/no-unused-vars
+  92:11  warning  'roleColors' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/landing/ChatbotShowcase.tsx
+  94:51  warning  'idx' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/landing/FeaturedProfessionals.tsx
+    5:8   warning  'Image' is defined but never used         @typescript-eslint/no-unused-vars
+   75:82  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  162:34  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/admin/Anti/ne-connect/src/components/landing/HeroSection.tsx
+   6:30  warning  'Search' is defined but never used                   @typescript-eslint/no-unused-vars
+  10:7   warning  'RegionSelector' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/landing/RegionShowcase.tsx
+   7:8   warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+  95:49  warning  'idx' is defined but never used    @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/landing/ServiceShowcase.tsx
+    4:29  warning  'useTransform' is defined but never used              @typescript-eslint/no-unused-vars
+    4:43  warning  'AnimatePresence' is defined but never used           @typescript-eslint/no-unused-vars
+  115:13  warning  'scrollYProgress' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/layout/Navbar.tsx
+   6:19  warning  'User' is defined but never used                         @typescript-eslint/no-unused-vars
+   6:86  warning  'PackageSearch' is defined but never used                @typescript-eslint/no-unused-vars
+  17:7   warning  'PROVIDER_NAV_LINKS' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/provider-profile/BookingSidebar.tsx
+   7:59  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  56:18  warning  'error' is defined but never used         @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/provider-profile/ProviderHero.tsx
+  7:57  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/admin/Anti/ne-connect/src/components/provider-profile/ProviderReviews.tsx
+  6:7  warning  'REVIEWS' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/provider-profile/ProviderServices.tsx
+   4:18  warning  'AnimatePresence' is defined but never used    @typescript-eslint/no-unused-vars
+   5:40  warning  'ChevronDown' is defined but never used        @typescript-eslint/no-unused-vars
+   7:7   warning  'SERVICES' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  14:66  error    Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+
+/Users/admin/Anti/ne-connect/src/components/providers/ProviderGrid.tsx
+  7:48  warning  'CheckCircle2' is defined but never used  @typescript-eslint/no-unused-vars
+  7:76  warning  'Zap' is defined but never used           @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/providers/ProviderSearch.tsx
+  5:26  warning  'Filter' is defined but never used          @typescript-eslint/no-unused-vars
+  5:40  warning  'ChevronDown' is defined but never used     @typescript-eslint/no-unused-vars
+  7:34  warning  'onFilterChange' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/services/RecommendedCarousel.tsx
+  4:18  warning  'useAnimation' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/services/ServiceCategories.tsx
+  6:118  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/components/services/ServicesHero.tsx
+  5:18  warning  'MapPin' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/middleware.ts
+  3:15  warning  'NextRequest' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/admin/Anti/ne-connect/src/types/next-auth.d.ts
+  1:8  warning  'NextAuth' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 72 problems (5 errors, 67 warnings)
+

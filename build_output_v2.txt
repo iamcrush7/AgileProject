@@ -1,0 +1,92 @@
+
+> ne-connect@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.0s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/58) ...
+  Generating static pages using 7 workers (14/58) 
+  Generating static pages using 7 workers (28/58) 
+  Generating static pages using 7 workers (43/58) 
+✓ Generating static pages using 7 workers (58/58) in 261.3ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /admin
+├ ƒ /admin/dashboard
+├ ƒ /admin/dashboard/bookings
+├ ƒ /admin/dashboard/categories
+├ ƒ /admin/dashboard/providers
+├ ƒ /admin/dashboard/support
+├ ƒ /admin/dashboard/users
+├ ○ /admin/login
+├ ƒ /api/admin/bookings
+├ ƒ /api/admin/categories
+├ ƒ /api/admin/providers
+├ ƒ /api/admin/providers/[id]
+├ ƒ /api/admin/support
+├ ƒ /api/admin/users
+├ ƒ /api/admin/users/[id]
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/auth/forgot-password
+├ ƒ /api/auth/register
+├ ƒ /api/auth/reset-password
+├ ƒ /api/availability/[providerId]
+├ ƒ /api/bookings
+├ ƒ /api/bookings/[id]
+├ ƒ /api/categories
+├ ƒ /api/chat
+├ ƒ /api/provider/profile
+├ ƒ /api/provider/profile/upload
+├ ƒ /api/provider/services
+├ ƒ /api/provider/services/[id]
+├ ƒ /api/providers
+├ ƒ /api/providers/[id]
+├ ƒ /api/reviews
+├ ƒ /api/services
+├ ƒ /api/support
+├ ƒ /api/user/profile
+├ ƒ /api/user/profile/upload
+├ ○ /booking/new
+├ ○ /careers
+├ ○ /contact
+├ ○ /dashboard
+├ ƒ /dashboard/provider
+├ ○ /forgot-password
+├ ○ /help
+├ ○ /how-it-works
+├ ○ /login
+├ ○ /onboarding
+├ ƒ /provider/[id]
+├ ƒ /provider/dashboard
+├ ƒ /provider/dashboard/jobs
+├ ƒ /provider/dashboard/profile
+├ ƒ /provider/dashboard/reviews
+├ ƒ /provider/dashboard/services
+├ ƒ /provider/home
+├ ƒ /provider/pending
+├ ○ /providers
+├ ○ /reset-password
+├ ○ /services
+├ ƒ /services/[id]
+├ ○ /signup
+├ ○ /support
+├ ƒ /user/dashboard
+├ ƒ /user/dashboard/bookings
+└ ƒ /user/dashboard/profile
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
