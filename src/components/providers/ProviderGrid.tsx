@@ -2,7 +2,6 @@
 
 import { useState, useEffect, SVGProps } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
 import Link from "next/link"
 import { Star, MapPin, ShieldCheck, Languages, ChevronRight } from "lucide-react"
 
@@ -81,8 +80,10 @@ export function ProviderGrid({ selectedState }: { selectedState: string | null }
                         <div className="relative z-10">
                             {/* Header: Avatar + Info */}
                             <div className="flex items-start space-x-4 mb-6">
-                                <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 border border-gray-100 dark:border-white/10 shadow-md">
-                                    <Image src={provider.image || "/placeholder-avatar.jpg"} alt={provider.name} fill unoptimized className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 border border-gray-100 dark:border-white/10 shadow-md bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                                    <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                                        {provider.name.charAt(0)}
+                                    </span>
                                 </div>
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center justify-between">

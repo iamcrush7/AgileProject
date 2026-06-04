@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
 import { ShieldCheck, Star, MapPin, Clock, Languages, CheckCircle2, MoreHorizontal, Share2 } from "lucide-react"
 
 interface ProviderProps {
@@ -24,15 +23,8 @@ export function ProviderHero({ provider }: { provider?: ProviderProps }) {
 
     return (
         <section className="relative bg-white dark:bg-[#030712] pt-24 pb-12">
-            {/* Banner Image */}
-            <div className="w-full h-[240px] md:h-[320px] relative overflow-hidden">
-                <Image
-                    src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&q=80"
-                    alt="Provider Workspace"
-                    fill
-                    unoptimized
-                    className="object-cover"
-                />
+            {/* Banner Background */}
+            <div className="w-full h-[240px] md:h-[320px] relative overflow-hidden bg-gradient-to-br from-indigo-500/20 via-purple-500/20 to-primary/20">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent"></div>
             </div>
 
@@ -43,15 +35,11 @@ export function ProviderHero({ provider }: { provider?: ProviderProps }) {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        className="relative w-32 h-32 sm:w-48 sm:h-48 rounded-[2rem] border-4 border-white dark:border-[#030712] overflow-hidden shadow-2xl shrink-0"
+                        className="relative flex items-center justify-center w-32 h-32 sm:w-48 sm:h-48 rounded-[2rem] border-4 border-white dark:border-[#030712] overflow-hidden shadow-2xl shrink-0 bg-indigo-100 dark:bg-indigo-900/30"
                     >
-                        <Image
-                            src={provider.image || "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=800&q=80"}
-                            alt={provider.name}
-                            fill
-                            unoptimized
-                            className="object-cover"
-                        />
+                        <span className="text-6xl sm:text-8xl font-bold text-indigo-600 dark:text-indigo-400">
+                            {provider.name.charAt(0)}
+                        </span>
                         {provider.verified && (
                             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2 flex justify-center">
                                 <div className="flex items-center space-x-1">
